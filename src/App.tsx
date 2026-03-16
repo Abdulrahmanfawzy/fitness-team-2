@@ -13,6 +13,7 @@ import Login from "./pages/Authentication/Login";
 import SignUp from "./pages/Authentication/SignUp";
 import Packages from "./pages/Packages/Packages";
 import Home from "./pages/Home/Home";
+import NotFoundPage from "./pages/NotFound/NotFound";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
     {path : "" , element : <MainLayout /> , children : [
       {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
       {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
+      {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,
     {path : "" , element : <AuthenticationLayout /> , children : [
       {path : "login" , element : <AuthenticationProtectedRoute><Login/></AuthenticationProtectedRoute> } ,
