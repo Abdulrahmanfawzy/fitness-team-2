@@ -14,6 +14,10 @@ import SignUp from "./pages/Authentication/SignUp";
 import Packages from "./pages/Packages/Packages";
 import Home from "./pages/Home/Home";
 import NotFoundPage from "./pages/NotFound/NotFound";
+import Trainers from "./pages/Trainers/Trainers";
+import Contact from "./pages/Contact/Contact";
+import UserProfile from "./pages/Profile/Profile";
+import TrainerProfile from "./pages/TrainerProfile/TrainerProfile";
 
 function App() {
 
@@ -21,6 +25,10 @@ function App() {
     {path : "" , element : <MainLayout /> , children : [
       {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
       {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
+      {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
+      {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
+      {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
+      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
       {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,
     {path : "" , element : <AuthenticationLayout /> , children : [
