@@ -34,7 +34,6 @@ function TrainerProfile() {
       <Certifications />
 
       <div className="bg-dark-gradient p-5">
-        {/* Training packages */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
           {packages.map((pack, index) => (
             <PackageCard
