@@ -6,7 +6,7 @@ import FilterPanel from "./components/FilterPanel";
 
 function Trainers() {
   return (
-    <div className="mt-[88px] ">
+    <div className="">
       <div className="bg-[#121212]">
         <TrainersHero />
         <TrainersSearch />
