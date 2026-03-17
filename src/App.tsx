@@ -23,7 +23,6 @@ import VerifyEmail from "./pages/Authentication/VerifyEmail";
 import ResetPassword from "./pages/Authentication/ResetPassword";
 import CompleteProfile from "./pages/Authentication/CompleteProfile";
 import Notifications from "./pages/Notifications/Notifications";
-
 function App() {
 
   const routers = createBrowserRouter([
@@ -47,7 +46,7 @@ function App() {
     ]} ,
   ])
   return (
-    <div>
+    <div className="dark">
      <RouterProvider router={routers}></RouterProvider>
     </div>
   )

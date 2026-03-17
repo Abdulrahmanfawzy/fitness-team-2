@@ -1,7 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-blue-900: #014162;
+  --color-orange: #ff4d4d;
+  --color-text-secondary: #a1a1a1;
+  --color-card-bg: #1a1a1a;
+  --color-card-border: #2a2a2a;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -48,51 +52,34 @@
 }
 
 :root {
-  --primary-color: #014162;
+  --primary-color: #ff4d4d;
+  --primary-color-light: rgba(255, 77, 77, 0.1);
+  --black: #111111;
+  --card-bg: #1a1a1a;
+  --card-border: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a1;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #014162cc;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklab(55.553% 0 -0.00006);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  --card: #2d2d2d;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
+  --primary: rgb(255, 77, 77);
   --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
+  --secondary: #121212;
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: #a1a1a1;
@@ -122,27 +109,13 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: #111111;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
   }
 }
 
-@theme {
-  --color-brand-black: var(--black);
-  --color-brand-primary: var(--primary-color);
-  --color-primary-light: var(--primary-color-light);
-  --color-brand-white: #ffffff;
-  --color-brand-gray-light: #d9d9d9;
-  --color-nav-bg: #f7fcff;
-  --shadow-brand: -4px 0px 4px 0px rgba(1, 65, 98, 0.35);
-  --transition-smooth: all 400ms ease-in-out;
-  --transition-smooth-color: color 300ms ease-in-out;
-}
-
-:root {
-  --primary-color: #014162;
-  --primary-color-light: rgb(1, 65, 98, 0.9);
-  --black: #141212;
-}
+/* Duplicate block removed — variables defined above */
 
 * {
   box-sizing: border-box;
@@ -150,13 +123,15 @@
 }
 body {
   font-family: "Inter", sans-serif;
-  background-color: #fff;
+  background-color: #111111;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 
 /* main colors */
 .text-orange {
-  color:rgb(255, 77, 77);
+  color: rgb(255, 77, 77);
 }
 
 .bg-orange {
@@ -172,11 +147,21 @@ body {
 }
 
 /* Dark Gradient Background */
+
+/* Dark Gradient Background — matches the Compare Features gradient */
 .bg-dark-gradient {
-  background: #401a1a;
-  background: linear-gradient(179deg, rgba(64, 26, 26, 1) 15%, rgba(18, 18, 18, 1) 100%);
+  background: linear-gradient(180deg, #2a0d0d 0%, #1a0808 40%, #111111 100%);
+  min-height: 100vh;
 }
 
+.bg-dark-linear-gradient {
+  background: linear-gradient(180deg, #2a0d0d 0%, #1a0808 40%, #111111 100%);
+}
+
+.bg-gray-gradient {
+  background: linear-gradient(180deg, #111111 0%, #111111 40%, #363636 100%);
+  min-height: 100vh;
+}
 
 /* custom-scroll */
 .custom-scroll::-webkit-scrollbar {

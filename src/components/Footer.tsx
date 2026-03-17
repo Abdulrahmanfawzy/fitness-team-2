@@ -1,24 +1,26 @@
-import "../index.css"
+import "../index.css";
 
-import { FaInstagram, FaTiktok, FaFacebookF, FaXTwitter } from "react-icons/fa6";
+import {
+  FaInstagram,
+  FaTiktok,
+  FaFacebookF,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 import { IoSend } from "react-icons/io5";
 
-
 export default function Footer() {
   return (
-    <footer className="bg-black text-gray-400 px-10 py-14">
+    <footer className="bg-gray-950 text-gray-400 px-10 py-14 border-t border-gray-900">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-
-
         <div>
           <h2 className="text-2xl font-bold text-white">
             Elite<span className="text-orange">Sync</span>
           </h2>
 
           <p className="mt-4 text-sm leading-6">
-            Elite personal training for peak performance.
-            Transform your body, elevate your mindset.
+            Elite personal training for peak performance. Transform your body,
+            elevate your mindset.
           </p>
 
           <div className="flex gap-3 mt-5">
@@ -33,18 +35,25 @@ export default function Footer() {
           </div>
         </div>
 
-
         <div>
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            {["Home", "Our Trainers", "Packages", "Book Session", "Contact Us"].map((item) => (
-              <li key={item} className="hover:text-white cursor-pointer transition">
+            {[
+              "Home",
+              "Our Trainers",
+              "Packages",
+              "Book Session",
+              "Contact Us",
+            ].map((item) => (
+              <li
+                key={item}
+                className="hover:text-white cursor-pointer transition"
+              >
                 {item}
               </li>
             ))}
           </ul>
         </div>
-
 
         <div>
           <h3 className="text-white font-semibold mb-4">Specialties</h3>
@@ -57,13 +66,15 @@ export default function Footer() {
               "Functional Fitness",
               "Women's Fitness",
             ].map((item) => (
-              <li key={item} className="hover:text-white cursor-pointer transition">
+              <li
+                key={item}
+                className="hover:text-white cursor-pointer transition"
+              >
                 {item}
               </li>
             ))}
           </ul>
         </div>
-
 
         <div>
           <h3 className="text-white font-semibold mb-4">Contact</h3>
