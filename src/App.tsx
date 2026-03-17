@@ -18,7 +18,11 @@ import Trainers from "./pages/Trainers/Trainers";
 import Contact from "./pages/Contact/Contact";
 import UserProfile from "./pages/Profile/Profile";
 import TrainerProfile from "./pages/TrainerProfile/TrainerProfile";
-
+import ForgotPassword from "./pages/Authentication/ForgotPassword";
+import VerifyEmail from "./pages/Authentication/VerifyEmail";
+import ResetPassword from "./pages/Authentication/ResetPassword";
+import CompleteProfile from "./pages/Authentication/CompleteProfile";
+import Notifications from "./pages/Notifications/Notifications";
 function App() {
 
   const routers = createBrowserRouter([
@@ -28,16 +32,21 @@ function App() {
       {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
       {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
+      {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
       {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
       {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,
     {path : "" , element : <AuthenticationLayout /> , children : [
       {path : "login" , element : <AuthenticationProtectedRoute><Login/></AuthenticationProtectedRoute> } ,
       {path : "sign-up" , element : <AuthenticationProtectedRoute><SignUp/></AuthenticationProtectedRoute> } ,
+      {path : "forgot-password" , element : <AuthenticationProtectedRoute><ForgotPassword/></AuthenticationProtectedRoute> } ,
+      {path : "verify" , element : <AuthenticationProtectedRoute><VerifyEmail/></AuthenticationProtectedRoute> } ,
+      {path : "reset-password" , element : <AuthenticationProtectedRoute><ResetPassword/></AuthenticationProtectedRoute> } ,
+      {path : "complete-profile" , element : <AuthenticationProtectedRoute><CompleteProfile/></AuthenticationProtectedRoute> } ,
     ]} ,
   ])
   return (
-    <div>
+    <div className="dark">
      <RouterProvider router={routers}></RouterProvider>
     </div>
   )

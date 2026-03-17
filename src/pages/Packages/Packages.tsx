@@ -1,6 +1,13 @@
+import TrainingPackages from "./TrainingPackages";
+import CompareFeatures from "./CompareFeatures";
+
 function Packages() {
   return (
-    <div>Packages</div>
-  )
+    <div className="min-h-screen bg-dark-gradient pt-20">
+      <TrainingPackages />
+      <CompareFeatures />
+    </div>
+  );
 }
-export default Packages
+
+export default Packages;
