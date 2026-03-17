@@ -1,4 +1,5 @@
 import PackageCard from "@/components/common/PackageCard";
+import Review from "@/components/common/Review";
 import {
   packages,
   trainers,
@@ -6,12 +7,9 @@ import {
 import Certifications from "@/components/Trainer/certifications/Certifications";
 import Others from "@/components/Trainer/others/Others";
 import Schedule from "@/components/Trainer/schedule/Schedule";
-import Testimonials from "@/components/Trainer/testimonials/Testimonials";
 import TrainerInfo from "@/components/Trainer/trainerInfo/TrainerInfo";
 
 const trainer = trainers[0];
-const trainerPackage = packages[0];
-
 function TrainerProfile() {
   return (
     <section className="py-10 w-full text-accent-foreground bg-gray-gradient">
@@ -57,7 +55,7 @@ function TrainerProfile() {
 
       <div className="bg-dark-gradient p-5">
         {/* Reviews  */}
-        <Testimonials />
+        <Review />
 
         {/* Other trainers */}
         <Others />
