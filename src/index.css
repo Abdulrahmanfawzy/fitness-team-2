@@ -48,7 +48,7 @@
 }
 
 :root {
-  --primary-color: #014162;
+  --primary-color: rgb(255, 77, 77);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -86,13 +86,13 @@
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  --card: #2D2D2D;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
+  --primary: rgb(255, 77, 77);
   --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
+  --secondary: #121212;
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: #a1a1a1;
@@ -139,7 +139,7 @@
 }
 
 :root {
-  --primary-color: #014162;
+  --primary-color: rgb(255, 77, 77);
   --primary-color-light: rgb(1, 65, 98, 0.9);
   --black: #141212;
 }
@@ -150,13 +150,11 @@
 }
 body {
   font-family: "Inter", sans-serif;
-  background-color: #fff;
 }
-
 
 /* main colors */
 .text-orange {
-  color:rgb(255, 77, 77);
+  color: rgb(255, 77, 77);
 }
 
 .bg-orange {
@@ -170,5 +168,14 @@ body {
 /* Dark Gradient Background */
 .bg-dark-gradient {
   background: #401a1a;
-  background: linear-gradient(179deg, rgba(64, 26, 26, 1) 15%, rgba(18, 18, 18, 1) 100%);
+  background: linear-gradient(
+    179deg,
+    rgba(64, 26, 26, 1) 15%,
+    rgba(18, 18, 18, 1) 100%
+  );
+}
+
+.bg-trainer-gradient {
+  background: radial-gradient(ellipse at bottom center, rgba(220, 50, 50, 0.08) 0%, transparent 0%),
+            #0d0d0d;;
 }

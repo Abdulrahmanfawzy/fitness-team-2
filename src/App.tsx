@@ -28,7 +28,7 @@ function App() {
       {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
       {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
-      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
+      {path : "trainer-profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
       {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,
     {path : "" , element : <AuthenticationLayout /> , children : [
@@ -37,7 +37,7 @@ function App() {
     ]} ,
   ])
   return (
-    <div>
+    <div className="dark">
      <RouterProvider router={routers}></RouterProvider>
     </div>
   )
