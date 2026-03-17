@@ -81,8 +81,9 @@ export const trainers: Trainer[] = [
 
 export const packages = [
   {
-    name: "Single Pack",
-    price: trainers[0].price,
+    title: "Single Pack",
+    price: "EGP 150",
+    duration: "60 MIN",
     sessions: "1 SESSION",
     features: [
       "Try any Trainer",
@@ -90,11 +91,12 @@ export const packages = [
       "Full Session Access",
       "Post-Workout Plan",
     ],
-    recommended: false,
+    isRecommended: false,
   },
   {
-    name: "Monthly Pack",
-    price: trainers[0].price * 5,
+    title: "Monthly Pack",
+    price: "EGP 1000",
+    duration: "60 MIN",
     sessions: "15 SESSIONS",
     features: [
       "Dedicated Trainer",
@@ -102,21 +104,22 @@ export const packages = [
       "Progress Tracking",
       "Priority Scheduling",
     ],
-    recommended: true,
+    isRecommended: true,
   },
   {
-    name: "Premium Pack",
-    price: trainers[0].price * 16,
-    sessions: "50 SESSIONS",
+    title: "Premium Pack",
+    price: "EGP 3000",
+    duration: "60 MIN",
+    sessions: "30 SESSIONS",
     features: [
       "Dedicated Trainer",
       "Full Coaching Program",
       "24/7 Trainer Access",
       "Custom Meal Plans",
     ],
-    recommended: false,
+    isRecommended: false,
   },
-] as const;
+];
 
 export const testimonials = [
   {

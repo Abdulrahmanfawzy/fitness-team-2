@@ -65,13 +65,13 @@ const Testimonials = () => {
                     />
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                   "{t.text}"
                 </p>
               </div>
               <div className="flex items-center gap-3 mt-5">
-                <div className="w-9 h-9 rounded-full bg-primary/20 text-primary text-xs font-bold flex items-center justify-center shrink-0">
-                  {t.name.slice(0, 2).toUpperCase()}
+                <div className="w-11 h-11 rounded-full bg-primary/20 text-primary  font-bold flex items-center justify-center shrink-0">
+                  <img src="/public/trainer.png" alt="trainer Photo" className="object-cover w-full h-full rounded-full" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold">{t.name}</p>

@@ -1,58 +1,67 @@
-import { packages } from "../lib/constants/Trainer/TrainerData";
+import { CheckCircle2, Star } from "lucide-react";
 
-function PackageCard() {
+interface PackageCardProps {
+  title: string;
+  price: string;
+  duration: string;
+  sessions: string;
+  features: string[];
+  isRecommended: boolean;
+}
+
+const PackageCard: React.FC<PackageCardProps> = ({ 
+  title, 
+  price, 
+  duration, 
+  sessions, 
+  features, 
+  isRecommended 
+}) => {
   return (
-    <div className="mb-12 ">
-      <h3 className="text-xl font-bold text-center mb-2">Training packages</h3>
-      <p className="text-sm text-muted-foreground text-center mb-8">
-        Choose a training plan that matches your goals and schedule
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-5">
-        {packages.map((pkg) => (
-          <div
-            key={pkg.name}
-            className={`relative rounded-lg px-6 py-10 h-110  grow  border transition-colors flex flex-col ${
-              pkg.recommended
-                ? "border-primary card-glow bg-primary/5"
-                : "border-border bg-card"
-            }`}
-          >
-            {pkg.recommended && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">
-                ★ Recommended
-              </span>
-            )}
-            <h4 className="text-xl font-semibold mb-3">{pkg.name}</h4>
-            <div className="flex items-baseline gap-1 mb-3">
-              <span className="text-primary text-2xl font-bold">
-                EGP {pkg.price.toLocaleString()}
-              </span>
-              <span className="text-muted-foreground text-xs">/package</span>
-            </div>
-            <p className="text-xs text-muted-foreground my-4">
-              60 MIN · {pkg.sessions}
-            </p>
-            <ul className="space-y-2 mb-6 flex-1">
-              {pkg.features.map((f) => (
-                <li key={f} className="flex items-center gap-2 ">
-                  <span className="text-success">✓</span> {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              className={`w-full cursor-pointer   py-2.5 text-foreground rounded-md text-sm font-semibold transition-colors ${
-                pkg.recommended
-                  ? "bg-primary  hover:bg-primary/90"
-                  : "border border-border  hover:bg-accent"
-              }`}
-            >
-              Book
-            </button>
-          </div>
-        ))}
+    <div className={`relative flex flex-col h-full p-8 rounded-sm border transition-all duration-300 ${
+      isRecommended 
+        ? "bg-card-recommended border-orange ring-1 ring-orange z-10" 
+        : "bg-card-bg border-card-border hover:border-white/20"
+    }`}>
+      {isRecommended && (
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-orange text-white text-xs font-black py-1.5 px-6 rounded-b-sm uppercase tracking-[0.15em] z-20 shadow-lg shadow-orange/20 whitespace-nowrap flex  gap-2">
+          <Star size={15} className="fill-accent-foreground"/> Recommended
+        </div>
+      )}
+
+      <div className="flex flex-col grow py-10">
+
+        <div className="mb-8">
+        <h3 className="text-2xl font-bold mb-5">{title}</h3>
+        <div className="flex items-baseline mb-6">
+          <span className="text-orange text-4xl font-extrabold">{price}</span>
+          <span className="text-text-secondary text-lg ml-2">/ package</span>
+        </div>
+        <div className="flex justify-start space-x-20 text-xs font-bold text-text-secondary uppercase tracking-widest pb-6 border-b border-white/5">
+          <span>{duration}</span>
+          <span>{sessions}</span>
+        </div>
+        </div>
+
+        <ul className="space-y-5 mb-12 grow">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-center space-x-3 text-sm">
+              <CheckCircle2 size={18} className="text-orange shrink-0" />
+              <span className="text-gray-200">{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        <button className={`w-full py-4 rounded-sm font-bold text-sm transition-all duration-300 transform ${
+          isRecommended 
+            ? "bg-orange text-white hover:brightness-125 hover:scale-105 shadow-xl shadow-orange/30" 
+            : "bg-transparent border border-white/20 text-white hover:bg-white/5 hover:scale-105 cursor-pointer"
+        }`}>
+          Book
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default PackageCard;

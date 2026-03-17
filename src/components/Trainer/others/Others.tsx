@@ -1,5 +1,5 @@
 import { trainers } from "@/components/lib/constants/Trainer/TrainerData";
-import { MapPin, Star } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const otherTrainers = trainers.slice(1, 4);
