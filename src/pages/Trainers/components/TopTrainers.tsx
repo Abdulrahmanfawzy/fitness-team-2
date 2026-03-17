@@ -1,4 +1,4 @@
-import FitnessSlider from "../Slider";
+import FitnessSlider from "./Slider";
 
 function TopTrainers() {
   return (
