@@ -3,10 +3,12 @@ import GetInTouchSection from "@/components/contact/GetInTouchSection";
 
 function Contact() {
   return (
-    <div className="py-24 px-8 max-w-6xl mx-auto  space-y-12 bg-black">
-      <GetInTouchSection />
+    <div className="bg-gray-950">
+      <div className="py-24 px-8 max-w-6xl mx-auto  space-y-12 ">
+        <GetInTouchSection />
 
-      <FrequentlyAskedSection />
+        <FrequentlyAskedSection />
+      </div>
     </div>
   );
 }

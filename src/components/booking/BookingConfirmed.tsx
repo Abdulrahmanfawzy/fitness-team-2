@@ -13,7 +13,7 @@ const BookingConfirmed = () => {
           confirmation Details Preperation Instructions.
         </p>
         <h3 className="self-center text-xl font-bold">Booking Summary</h3>
-        <div className="w-full rounded border border-[#999999] bg-black p-2">
+        <div className="w-full rounded border border-[#999999] bg-gray-950 p-2">
           <BookingInfoList />
         </div>
         <Link
