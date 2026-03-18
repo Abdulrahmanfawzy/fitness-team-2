@@ -3,7 +3,7 @@ import PaymentAndConfirm from "@/components/booking/PaymentAndConfirm";
 import { useState } from "react";
 
 const Booking = () => {
-  const [bookingConfirmed, setBookingConfirmed] = useState(true);
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
   return (
     <section className="bg-black mt-12">
       <div className="py-24 px-8 max-w-6xl mx-auto ">
