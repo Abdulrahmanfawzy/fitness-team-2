@@ -20,7 +20,7 @@ const BookingConfirmed = ({
           <BookingInfoList />
         </div>
         <button
-          onClick={() => setBookingConfirmed(false)}
+          onClick={() => setBookingConfirmed(true)}
           className="w-full rounded bg-orange py-2 text-white cursor-pointer hover:scale-102 transition-scale duration-300"
         >
           Back To Home
