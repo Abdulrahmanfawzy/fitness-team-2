@@ -1,0 +1,20 @@
+import BookingConfirmed from "@/components/booking/BookingConfirmed";
+import PaymentAndConfirm from "@/components/booking/PaymentAndConfirm";
+import { useState } from "react";
+
+const Booking = () => {
+  const [bookingConfirmed, setBookingConfirmed] = useState(true);
+  return (
+    <section className="bg-black mt-12">
+      <div className="py-24 px-8 max-w-6xl mx-auto ">
+        {bookingConfirmed ? (
+          <BookingConfirmed setBookingConfirmed={setBookingConfirmed} />
+        ) : (
+          <PaymentAndConfirm />
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Booking;
