@@ -1,11 +1,8 @@
+import { Link } from "react-router-dom";
 import BookingInfoList from "./BookingInfoList";
 import SuccessfullySignedIcon from "./SuccessfullySignedIcon";
 
-const BookingConfirmed = ({
-  setBookingConfirmed,
-}: {
-  setBookingConfirmed: (bookingConfirmed: boolean) => void;
-}) => {
+const BookingConfirmed = () => {
   return (
     <div className=" max-w-4xl mx-auto  bg-[#2D2D2D] rounded-2xl py-12">
       <div className="mx-auto flex w-full max-w-2xl flex-col items-stretch gap-4 px-4">
@@ -19,12 +16,12 @@ const BookingConfirmed = ({
         <div className="w-full rounded border border-[#999999] bg-black p-2">
           <BookingInfoList />
         </div>
-        <button
-          onClick={() => setBookingConfirmed(true)}
-          className="w-full rounded bg-orange py-2 text-white cursor-pointer hover:scale-102 transition-scale duration-300"
+        <Link
+          to="/"
+          className="w-full rounded bg-orange py-2 text-white cursor-pointer hover:scale-102 transition-scale duration-300 text-center"
         >
           Back To Home
-        </button>
+        </Link>
       </div>
     </div>
   );

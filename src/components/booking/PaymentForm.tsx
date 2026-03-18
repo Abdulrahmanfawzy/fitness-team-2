@@ -4,16 +4,20 @@ import { FaPaypal } from "react-icons/fa";
 import { SiVodafone } from "react-icons/si";
 import PaymentButton from "./PaymentButton";
 
-const PaymentForm = () => {
+const PaymentForm = ({
+  setBookingConfirmed,
+}: {
+  setBookingConfirmed: (bookingConfirmed: boolean) => void;
+}) => {
   const [selectedPayment, setSelectedPayment] = useState("card");
 
   const handleSelectPayment = (payment: string) => {
-    console.log(payment);
     setSelectedPayment(payment);
   };
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setBookingConfirmed(true);
     console.log(selectedPayment);
     // TODO: if the selected payment is card, show the card form
     // TODO: if the selected payment is paypal or vodafone cash we will hanlde it with the backend
