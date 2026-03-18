@@ -1,6 +1,10 @@
 import PaymentForm from "./PaymentForm";
 
-const PaymentAndConfirm = () => {
+const PaymentAndConfirm = ({
+  setBookingConfirmed,
+}: {
+  setBookingConfirmed: (bookingConfirmed: boolean) => void;
+}) => {
   return (
     <>
       <h1 className="font-bold text-3xl text-center mb-4">Payment & Confirm</h1>
@@ -10,7 +14,7 @@ const PaymentAndConfirm = () => {
           <div className="flex flex-col items-center justify-center px-4 md:px-24">
             <h2 className="text-xl font-bold mb-4">Payment Method</h2>
             <div className="w-full">
-              <PaymentForm />
+              <PaymentForm setBookingConfirmed={setBookingConfirmed} />
             </div>
           </div>
         </div>
