@@ -22,7 +22,7 @@ function CompareFeatures() {
     <section className="pt-8 pb-20">
       <div className="max-w-6xl mx-auto px-8">
         <div
-          className="w-full border border-white/20 rounded-sm px-12 py-9"
+          className="w-full border border-white rounded-sm px-12 py-9"
           style={{ background: "linear-gradient(180deg, #2a0d0d 0%, #1a0808 40%, #111111 100%)" }}
         >
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-16 tracking-tight">Compare Features</h2>

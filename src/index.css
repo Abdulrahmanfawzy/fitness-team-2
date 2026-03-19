@@ -4,7 +4,7 @@
 @theme {
   --color-orange: #ff4d4d;
   --color-text-secondary: #a1a1a1;
-  --color-card-bg: #1a1a1a;
+  --color-card-bg: #ff4d4d05;
   --color-card-border: #2a2a2a;
 }
 
@@ -55,7 +55,7 @@
   --primary-color: #ff4d4d;
   --primary-color-light: rgba(255, 77, 77, 0.1);
   --black: #111111;
-  --card-bg: #1a1a1a;
+  --card-bg: #ff4d4d05;
   --card-border: #2a2a2a;
   --text-primary: #ffffff;
   --text-secondary: #a1a1a1;
@@ -101,7 +101,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    background-color: #111111;
+    background-color: #000000;
     color: #ffffff;
     font-family: "Inter", sans-serif;
   }
@@ -115,7 +115,7 @@
 }
 body {
   font-family: "Inter", sans-serif;
-  background-color: #111111;
+  background-color: #000000;
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -138,4 +138,12 @@ body {
 .bg-dark-gradient {
   background: linear-gradient(180deg, #2a0d0d 0%, #1a0808 40%, #111111 100%);
   min-height: 100vh;
+}
+
+.bg-card-recommended {
+  background: linear-gradient(180deg, #381010 0%, #240b0b 40%, #111111 100%);
+}
+
+.bg-card-standard {
+  background: #222222;
 }

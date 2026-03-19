@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Zap } from "lucide-react";
 
 interface PackageCardProps {
   title: string;
@@ -18,14 +18,14 @@ const PackageCard: React.FC<PackageCardProps> = ({
   isRecommended 
 }) => {
   return (
-    <div className={`relative flex flex-col h-full p-8 rounded-sm border transition-all duration-300 ${
+    <div className={`relative flex flex-col h-full p-8 rounded-2xl border transition-all duration-300 ${
       isRecommended 
-        ? "bg-card-recommended border-orange ring-1 ring-orange z-10" 
-        : "bg-card-bg border-card-border hover:border-white/20"
+        ? "bg-card-recommended border-orange z-10" 
+        : "bg-card-standard border-card-border hover:border-orange"
     }`}>
       {isRecommended && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-orange text-white text-xs font-black py-1.5 px-6 rounded-b-sm uppercase tracking-[0.15em] z-20 shadow-lg shadow-orange/20 whitespace-nowrap">
-          + Recommended
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-orange text-white text-[11px] font-black py-1.5 px-3 rounded-b-xl uppercase tracking-[0.15em] z-20 shadow-lg shadow-orange/40 whitespace-nowrap flex items-center gap-1.5">
+          <Zap size={10} className="fill-white text-white" /> Recommended
         </div>
       )}
 
@@ -37,7 +37,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
           <span className="text-orange text-4xl font-extrabold">{price}</span>
           <span className="text-text-secondary text-lg ml-2">/ package</span>
         </div>
-        <div className="flex justify-start space-x-20 text-xs font-bold text-text-secondary uppercase tracking-widest pb-6 border-b border-white/5">
+        <div className="flex justify-start space-x-20 text-xs font-bold text-text-secondary uppercase tracking-widest">
           <span>{duration}</span>
           <span>{sessions}</span>
         </div>
