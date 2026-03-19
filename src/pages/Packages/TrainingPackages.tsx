@@ -42,9 +42,9 @@ const packages = [
 
 function TrainingPackages() {
   return (
-    <section className="pt-20 pb-8">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-6 tracking-tight">Training Packages</h2>
+    <section className="pt-10 pb-8">
+      <div className="text-center mb-10">
+        <h2 className="text-[28px] md:text-[32px] font-bold mb-4 tracking-widest">Training Packages</h2>
         <p className="text-text-secondary text-2xl max-w-none mx-auto">
           Choose a training plan that matches your goals and schedule
         </p>

@@ -150,7 +150,7 @@ body {
 
 /* Dark Gradient Background — matches the Compare Features gradient */
 .bg-dark-gradient {
-  background: linear-gradient(180deg, #2a0d0d 0%, #1a0808 40%, #111111 100%);
+  background: linear-gradient(180deg, #220707 0%, #110404 40%, #080808 100%);
   min-height: 100vh;
 }
 
