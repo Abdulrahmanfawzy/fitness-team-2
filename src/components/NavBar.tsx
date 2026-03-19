@@ -1,13 +1,17 @@
 import { NavLink } from "react-router-dom";
 import "../index.css";
-import { BellIcon, Space } from "lucide-react";
+import { BellIcon } from "lucide-react";
 import { UserIcon } from "lucide-react";
 import { MenuIcon } from "lucide-react";
+import Sidebar from "./Sidebar";
+import { useState } from "react";
 
 import { Link } from "react-router-dom";
-
+import { XIcon } from "lucide-react";
 
 function NavBar() {
+  const [openSideBar, setOpenSideBar] = useState(false);
+
   return (
     <div className=" bg-gray-950 h-16 flex items-center justify-center border-b border-b-gray-900">
       <div className="container mx-auto px-5 flex items-center justify-between ">
@@ -65,10 +69,21 @@ function NavBar() {
           </Link>
         </div>
 
-        <MenuIcon
-          className=" text-gray-50 block md:hidden cursor-pointer active:scale-105"
-          size={30}
-        />
+        {openSideBar ? (
+          <XIcon
+            onClick={() => setOpenSideBar(false)}
+            className=" text-gray-50 block md:hidden cursor-pointer active:scale-105"
+            size={30}
+          />
+        ) : (
+          <MenuIcon
+            onClick={() => setOpenSideBar(true)}
+            className=" text-gray-50 block md:hidden cursor-pointer active:scale-105"
+            size={30}
+          />
+        )}
+
+        <Sidebar setOpenSideBar={setOpenSideBar} openSideBar={openSideBar} />
       </div>
     </div>
   );

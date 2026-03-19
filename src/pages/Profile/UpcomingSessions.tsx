@@ -41,35 +41,33 @@ export default function UpcomingSessions() {
                     View Past Sessions
                 </span>
             </div>
-
             {sessions.map((s) => (
                 <div
                     key={s.id}
                     className="flex justify-between items-center border border-[#A7A7A7] p-4 rounded-2xl">
-                        <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                        <img src={s.img} className="w-13 h-13 rounded-full" />
-                        <div>
-                            <p className="font-normal text-2xl text-[#FFFFFF]">{s.title}</p>
-                            <p className="text-[#A7A7A7] text-sm ">
-                                with {s.coach}
-                            </p>
-
+                    <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                            <img src={s.img} className="w-13 h-13 rounded-full" />
+                            <div>
+                                <p className="font-normal text-2xl text-[#FFFFFF]">{s.title}</p>
+                                <p className="text-[#A7A7A7] text-sm ">
+                                    with {s.coach}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex gap-4 ml-16">
-                        {dates.map((date, index) => {
-                            const Icon = date.icon;
-                            return (
-                                <div key={index} className="flex items-center gap-2">
-                                    <Icon size={16} className="w-5 h-5 text-[#A7A7A7]" />
-                                    <p className="text-[#A7A7A7] text-sm ">
-                                        {date.title}
-                                    </p>
-                                </div>
-                            );
-                        })}
-                    </div>
+                        <div className="flex gap-4 ml-16">
+                            {dates.map((date, index) => {
+                                const Icon = date.icon;
+                                return (
+                                    <div key={index} className="flex items-center gap-2">
+                                        <Icon size={16} className="w-5 h-5 text-[#A7A7A7]" />
+                                        <p className="text-[#A7A7A7] text-sm ">
+                                            {date.title}
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
                         <button className="border border-[#FF4D4D] px-9 py-2.5 rounded-md text-xs font-bold hover:bg-[#FF4D4D] transition">
@@ -81,7 +79,6 @@ export default function UpcomingSessions() {
                     </div>
                 </div>
             ))}
-
         </div>
     );
 }

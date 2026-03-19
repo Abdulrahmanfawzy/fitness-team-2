@@ -47,8 +47,8 @@ export default function LineChartComponent() {
     },
   };
 
-  return <div className=" mt-3 mb-8 border rounded-md border-orange p-5 md:p-8 w-full overflow-hidden">
-    <h2 className=" mb-5 text-3xl font-semibold">Sessions Over Time</h2>
-    <Line data={data} options={options} />
+  return<div className=" mt-3 border rounded-md border-orange p-4">
+    <h2 className=" mb-5 text-3xl font-bold">Sessions Over Time</h2>
+    <Line height={1000} data={data} options={options} />
   </div>;
 }

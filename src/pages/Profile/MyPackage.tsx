@@ -1,4 +1,4 @@
-import { Package, Check , type LucideIcon } from "lucide-react";
+import { Package, Check, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Package = {
@@ -66,21 +66,18 @@ export default function MyPackage() {
                         <p >
                             Sessions Remaining Out Of {pkg.total}
                         </p>
-                        <span className="text-[#FF4D4D]  ">
+                        <span className="text-[#FF4D4D] ">
                             {completed} Completed
                         </span>
                     </div>
-
                     <div className="w-full bg-[#D9D9D9] h-2 rounded-full">
                         <div
                             className="bg-[#FF4D4D] h-2 rounded-full"
-                            style={{ width: `${progress}%` }}
-                        />
+                            style={{ width: `${progress}%` }} />
                     </div>
                 </div>
                 <div className="mt-6">
                     <h3 className="font-semibold text-2xl mb-3">Package Includes:</h3>
-
                     <div className=" grid grid-cols-1 md:grid-cols-2 gap-2">
                         {features.map((f, i) => (
                             <p key={i} className=" flex items-center text-[#FFFFFF] text-2xl font-light">

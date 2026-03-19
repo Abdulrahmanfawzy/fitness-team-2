@@ -31,6 +31,8 @@ const Calendar = ({ date, setDate }: Props) => {
   const monthName = currentMonth.toLocaleString("default", { month: "long" });
 
   const year = currentMonth.getFullYear();
+  const today = currentMonth.getDay()
+  
   return (
     <div className="flex-1">
       <div className="flex items-center justify-between mb-4">
@@ -60,7 +62,7 @@ const Calendar = ({ date, setDate }: Props) => {
           <div key={`b-${b}`} />
         ))}
         {days.map((day) => {
-          const isToday = day === 11;
+          const isToday = day === today;
           const isSelected = date === day;
           return (
             <button

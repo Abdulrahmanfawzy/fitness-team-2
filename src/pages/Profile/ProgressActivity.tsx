@@ -55,10 +55,7 @@ export default function ProgressActivity() {
           );
         })}
       </div>
-      
-        <LineChartComponent />
-        
-     
+      <LineChartComponent />
       <div className="border border-[#A7A7A7] rounded-2xl p-6">
         <h2 className="mb-4 text-2xl">Recent Workout History</h2>
 

@@ -23,6 +23,7 @@ import VerifyEmail from "./pages/Authentication/VerifyEmail";
 import ResetPassword from "./pages/Authentication/ResetPassword";
 import CompleteProfile from "./pages/Authentication/CompleteProfile";
 import Notifications from "./pages/Notifications/Notifications";
+import Booking from "./pages/Booking/Booking";
 function App() {
 
   const routers = createBrowserRouter([
@@ -31,6 +32,7 @@ function App() {
       {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
       {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
       {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
+      {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
       {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
       {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
