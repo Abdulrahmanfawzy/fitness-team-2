@@ -17,7 +17,7 @@ import { User2Icon } from "lucide-react";
 // notifications
 // profile
 
-function Sidebar({ openSideBar, setOpenSideBar }: SidebarProps) {
+function Sidebar({ openSideBar }: SidebarProps) {
   return (
     <div
       className={`${openSideBar ? "translate-x-0" : "translate-x-full"}  flex flex-col gap-3 p-2 md:hidden transform transition-transform duration-300 fixed top-16 right-0 bottom-0 w-60 bg-gray-950`}

@@ -1,5 +1,5 @@
 import { Package, Check, type LucideIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Package = {
     name: string;
@@ -11,7 +11,14 @@ type Package = {
 };
 
 export default function MyPackage() {
-    const [pkg, setPkg] = useState<Package | null>(null);
+    const [pkg] = useState<Package | null>({
+        name: "Single Pack",
+        status: "Active",
+        expires: "May 31, 2026",
+        total: 20,
+        remaining: 12,
+        icon: Package,
+    });
 
     const features = [
         "1-on-1 Personal Training",
@@ -19,19 +26,6 @@ export default function MyPackage() {
         "Weekly Check-ins",
         "Access to Pro App Features",
     ];
-
-    useEffect(() => {
-        const data: Package = {
-            name: "Single Pack",
-            status: "Active",
-            expires: "May 31, 2026",
-            total: 20,
-            remaining: 12,
-            icon: Package,
-        };
-
-        setPkg(data);
-    }, []);
 
     if (!pkg) return <p>Loading...</p>;
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import pic from "@/assets/pic.jpg";
 import { Clock, FileSpreadsheet, MapPin, type LucideIcon } from "lucide-react";
 
@@ -14,24 +14,19 @@ type date = {
 };
 
 export default function UpcomingSessions() {
-    const [sessions, setSessions] = useState<Session[]>([]);
-    const [dates, setdates] = useState<date[]>([]);
-
-    useEffect(() => {
-        setSessions([
-            {
-                id: 1,
-                title: "Strength Training",
-                coach: "Sarah Jenkins",
-                img: pic,
-            },
-        ]);
-        setdates([
-            { icon: FileSpreadsheet, title: "Tomorrow" },
-            { icon: Clock, title: "9:00 AM - 10:00 AM" },
-            { icon: MapPin, title: "Downtown Gym" },
-        ]);
-    }, []);
+    const [sessions] = useState<Session[]>([
+        {
+            id: 1,
+            title: "Strength Training",
+            coach: "Sarah Jenkins",
+            img: pic,
+        },
+    ]);
+    const [dates] = useState<date[]>([
+        { icon: FileSpreadsheet, title: "Tomorrow" },
+        { icon: Clock, title: "9:00 AM - 10:00 AM" },
+        { icon: MapPin, title: "Downtown Gym" },
+    ]);
 
     return (
         <div className=" px-4 md:px-8 mt-10">
@@ -74,7 +69,7 @@ export default function UpcomingSessions() {
                             Reschedule
                         </button>
                         <button className="bg-[#FF4D4D] px-9 py-2.5 rounded-md tracking-tight text-xs font-bold hover:bg-black border border-[#FF4D4D] transition">
-                            Veiw Details
+                            View Details
                         </button>
                     </div>
                 </div>

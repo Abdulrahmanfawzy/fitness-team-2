@@ -38,7 +38,7 @@ function Home() {
               Book Now
             </Link>
             <Link
-              className=" w-44 flex items-center justify-center rounded-md border-[1px] border-gray-200 h-10 "
+              className=" w-44 flex items-center justify-center rounded-md border border-gray-200 h-10 "
               to={"/trainers"}
             >
               Meet Our Trainers
@@ -78,7 +78,7 @@ function Home() {
         <p className=" p-1 rounded-xl text-orange border-orange border w-fit font-bold bg-orange-800/25  mb-2">
           How It works
         </p>
-        <p className=" text-4xl font-bold">hree Steps to Your Best Self</p>
+        <p className=" text-4xl font-bold">Three Steps to Your Best Self</p>
         <p className=" text-gray-400 text-sm font-medium max-w-lg text-center">
           We've made the booking process frictionless so you can focus on what
           matters — your training.
@@ -125,7 +125,7 @@ function Home() {
         </p>
         <div className=" flex items-center justify-between">
           <h2 className=" text-white text-5xl font-extrabold ">
-            Meet the <span className=" text-orange mt-2"> Experts</span>
+            Meet the <span className=" text-orange mt-2"> Experts</span>
           </h2>
           <div className=" flex items-center gap-3">
             <svg

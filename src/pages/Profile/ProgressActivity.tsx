@@ -1,36 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Flame, Package, Clock } from "lucide-react";
 
 import LineChartComponent from "@/pages/Profile/LineChartComponent";
 export default function ProgressActivity() {
-  const [stats, setStats] = useState<any>(null);
-
-  useEffect(() => {
-    setStats({
-      streak: 8,
-      total: 48,
-      avg: 3.2,
-      chart: [
-        { month: "Jan", value: 10 },
-        { month: "Feb", value: 13 },
-        { month: "Mar", value: 14 },
-        { month: "Apr", value: 8 },
-        { month: "May", value: 11 },
-        { month: "Jun", value: 13 },
-        { month: "Jul", value: 14 },
-        { month: "Aug", value: 10 },
-        { month: "Sep", value: 11 },
-        { month: "Oct", value: 13 },
-        { month: "Nov", value: 13 },
-        { month: "Dec", value: 11 },
-      ],
-      workouts: [
-        { name: "Upper Body Strength", date: "Oct 18, 2024", time: "60 min", kcal: 420 },
-        { name: "HIIT Cardio", date: "Oct 15, 2024", time: "45 min", kcal: 550 },
-        { name: "Lower Body Power", date: "Oct 12, 2024", time: "60 min", kcal: 480 },
-      ],
-    });
-  }, []);
+  const [stats] = useState({
+    streak: 8,
+    total: 48,
+    avg: 3.2,
+    chart: [
+      { month: "Jan", value: 10 },
+      { month: "Feb", value: 13 },
+      { month: "Mar", value: 14 },
+      { month: "Apr", value: 8 },
+      { month: "May", value: 11 },
+      { month: "Jun", value: 13 },
+      { month: "Jul", value: 14 },
+      { month: "Aug", value: 10 },
+      { month: "Sep", value: 11 },
+      { month: "Oct", value: 13 },
+      { month: "Nov", value: 13 },
+      { month: "Dec", value: 11 },
+    ],
+    workouts: [
+      { name: "Upper Body Strength", date: "Oct 18, 2024", time: "60 min", kcal: 420 },
+      { name: "HIIT Cardio", date: "Oct 15, 2024", time: "45 min", kcal: 550 },
+      { name: "Lower Body Power", date: "Oct 12, 2024", time: "60 min", kcal: 480 },
+    ],
+  });
 
   if (!stats) return <p>Loading...</p>;
 
@@ -60,7 +56,7 @@ export default function ProgressActivity() {
         <h2 className="mb-4 text-2xl">Recent Workout History</h2>
 
         <div className="space-y-3">
-          {stats.workouts.map((w: any, i: number) => (
+          {stats.workouts.map((w, i) => (
             <div key={i} className="bg-[#2D2D2D] p-4 rounded-xl flex-col md:flex-row items-center">
               <div>
                 <p className="text-lg mb-2">{w.name}</p>
