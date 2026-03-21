@@ -31,57 +31,59 @@ const Calendar = ({ date, setDate }: Props) => {
   const monthName = currentMonth.toLocaleString("default", { month: "long" });
 
   const year = currentMonth.getFullYear();
-  const today = currentMonth.getDay()
-  
+  const today = currentMonth.getDay();
+
   return (
-    <div className="flex-1">
-      <div className="flex items-center justify-between mb-4">
-        <button
-          className="text-muted-foreground hover:text-foreground cursor-pointer"
-          onClick={goToPreviousMonth}
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <span className="font-semibold">
-          {monthName} {year}
-        </span>
-        <button
-          className="text-muted-foreground hover:text-foreground cursor-pointer"
-          onClick={goToNextMonth}
-        >
-          <ChevronRight size={20} />
-        </button>
+    <>
+      <div className="flex-1">
+        <div className="flex items-center justify-between mb-4">
+          <button
+            className="text-muted-foreground hover:text-foreground cursor-pointer"
+            onClick={goToPreviousMonth}
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <span className="font-semibold">
+            {monthName} {year}
+          </span>
+          <button
+            className="text-muted-foreground hover:text-foreground cursor-pointer"
+            onClick={goToNextMonth}
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+        <div className="grid grid-cols-7 gap-1 text-center text-xs">
+          {weekDays.map((d) => (
+            <div key={d} className="py-2 text-muted-foreground font-medium">
+              {d}
+            </div>
+          ))}
+          {blanks.map((b) => (
+            <div key={`b-${b}`} />
+          ))}
+          {days.map((day) => {
+            const isToday = day === today;
+            const isSelected = date === day;
+            return (
+              <button
+                key={day}
+                onClick={() => setDate(day)}
+                className={`py-2 rounded-md transition-colors text-sm ${
+                  isSelected
+                    ? "bg-primary text-primary-foreground"
+                    : isToday
+                      ? "text-primary font-bold"
+                      : "text-foreground hover:bg-accent"
+                }`}
+              >
+                {day}
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div className="grid grid-cols-7 gap-1 text-center text-xs">
-        {weekDays.map((d) => (
-          <div key={d} className="py-2 text-muted-foreground font-medium">
-            {d}
-          </div>
-        ))}
-        {blanks.map((b) => (
-          <div key={`b-${b}`} />
-        ))}
-        {days.map((day) => {
-          const isToday = day === today;
-          const isSelected = date === day;
-          return (
-            <button
-              key={day}
-              onClick={() => setDate(day)}
-              className={`py-2 rounded-md transition-colors text-sm ${
-                isSelected
-                  ? "bg-primary text-primary-foreground"
-                  : isToday
-                    ? "text-primary font-bold"
-                    : "text-foreground hover:bg-accent"
-              }`}
-            >
-              {day}
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 
