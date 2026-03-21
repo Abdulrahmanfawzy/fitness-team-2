@@ -13,7 +13,7 @@ function ForgotPassword() {
 
   const navigate = useNavigate()
 
-  async function onSubmit(data) {
+  async function onSubmit() {
     navigate("/verify")
   }
 

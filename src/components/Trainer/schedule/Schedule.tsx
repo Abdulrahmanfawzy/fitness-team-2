@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import TimeSlot from "./TimeSlot";
 import Calendar from "./Calendar";
