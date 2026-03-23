@@ -14,9 +14,7 @@ function Review() {
   }
   return (
     <div className="mb-12 p-5">
-      <h3 className="text-2xl font-bold text-center mb-8">What clients say</h3>
-
-      <div className="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-6  mx-auto">
         {/* Left Panel */}
         <div className="md:w-52 shrink-0 bg-card border border-border rounded-xl p-6 flex flex-col justify-between min-h-65">
           <div>

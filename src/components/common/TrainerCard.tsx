@@ -4,7 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 function TrainerCard() {
   return (
-    <div className="w-[398px] h-[580px] rounded-2xl overflow-hidden bg-[#2C2C2E] text-white shadow-lg mx-auto font-sans">
+    <div className="  rounded-2xl overflow-hidden bg-[#2C2C2E] text-white shadow-lg mx-auto font-sans">
       {/* image */}
       <div className="relative">
         <div className="absolute top-4 right-4 bg-red-900/40 backdrop-blur-sm px-2.5 py-1 rounded-md flex items-center gap-1.5 border border-red-500/20">

@@ -14,7 +14,7 @@ function NavBar() {
 
   return (
     <div className=" bg-gray-950 h-16 flex items-center justify-center border-b border-b-gray-900">
-      <div className="container mx-auto px-5 flex items-center justify-between ">
+      <div className="w-[95%] md:w-[85%]  mx-auto px-5 flex items-center justify-between ">
         <h2 className="text-2xl font-bold text-white">
           Elite<span className="text-orange">Sync</span>
         </h2>
