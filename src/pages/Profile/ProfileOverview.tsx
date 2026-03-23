@@ -8,7 +8,7 @@ type InfoCard = {
 };
 
 const ProfileOverview: React.FC = () => {
-    const [about, setAbout] = useState(
+    const [about] = useState(
         "Fitness enthusiast focused on strength training and overall wellness. Training consistently for 2 years. Looking to push my limits and achieve new personal records in deadlifts and squats while maintaining a balanced lifestyle."
     );
 

@@ -1,5 +1,5 @@
 import { CalendarCheck2, Package, Clock, type LucideIcon } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Profile from "@/assets/Profile.jpg";
 type User = {
     name: string;
@@ -14,22 +14,16 @@ type Card = {
 };
 
 const ProfileHeader: React.FC = () => {
-    const [user, setUser] = useState<User | null>(null);
-    const [cards, setCards] = useState<Card[]>([]);
-
-    useEffect(() => {
-        setUser({
-            name: "Mohamed Alaa",
-            memberSince: 2022,
-            image: Profile,
-        });
-
-        setCards([
-            { icon: CalendarCheck2, title: "Sessions Completed", value: 48 },
-            { icon: Package, title: "Active Package", value: "Single Pack" },
-            { icon: Clock, title: "Next Session", value: "Today, 9:00 AM" },
-        ]);
-    }, []);
+    const [user] = useState<User | null>({
+        name: "Mohamed Alaa",
+        memberSince: 2022,
+        image: Profile,
+    });
+    const [cards] = useState<Card[]>([
+        { icon: CalendarCheck2, title: "Sessions Completed", value: 48 },
+        { icon: Package, title: "Active Package", value: "Single Pack" },
+        { icon: Clock, title: "Next Session", value: "Today, 9:00 AM" },
+    ]);
 
     if (!user) return null;
 

@@ -54,7 +54,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
 
         <button className={`w-full py-3 sm:py-4 rounded-sm font-bold text-xs sm:text-sm transition-all duration-300 transform ${
           isRecommended 
-            ? "bg-orange text-white hover:brightness-125 hover:scale-105 shadow-xl shadow-orange/30" 
+            ? "bg-orange text-white hover:brightness-125 hover:scale-105" 
             : "bg-transparent border border-white/20 text-white hover:bg-white/5 hover:scale-105 cursor-pointer"
         }`}>
           Book
