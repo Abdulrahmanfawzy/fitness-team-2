@@ -3,7 +3,7 @@ import CompareFeatures from "./CompareFeatures";
 
 function Packages() {
   return (
-    <div className="min-h-screen bg-dark-gradient pt-20">
+    <div className="min-h-screen bg-dark-gradient">
       <TrainingPackages />
       <CompareFeatures />
     </div>
