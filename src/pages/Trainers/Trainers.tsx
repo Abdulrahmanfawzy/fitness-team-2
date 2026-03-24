@@ -14,7 +14,6 @@ function Trainers() {
       </div>
       <div className="bg-dark-gradient">
         <TrainersList />
-        <FilterPanel />
       </div>
     </div>
   );
