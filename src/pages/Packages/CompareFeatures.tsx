@@ -1,5 +1,6 @@
 import { Check, ShieldCheck, BadgeCheck } from "lucide-react";
 import usePackages from "@/hooks/usePackages";
+import type { UiPackage } from "@/hooks/usePackages";
 
 function CompareFeatures() {
   const { packages: apiPackages } = usePackages();
@@ -25,7 +26,7 @@ function CompareFeatures() {
     { label: "FULL ACCESS", key: "Full Session Access" as const },
   ];
 
-  const getFeatureValue = (pkg: any, featureKey: string) => {
+  const getFeatureValue = (pkg: UiPackage | undefined, featureKey: string) => {
     if (!pkg) return null;
     
     if (featureKey === "price") return pkg.price;

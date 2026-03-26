@@ -7,7 +7,7 @@ function FooterSection() {
       </p>
       <h2 className=" text-white text-3xl md:text-5xl font-extrabold max-w-xl text-center leading-normal ">
         Your Transformation Starts
-        <span className=" text-orange mt-2"> Today</span>
+        <span className=" text-orange mt-2"> Today</span>
       </h2>
       <p className=" text-text-secondary text-center text-[16px] sm:text-[18px] ">
         Join 2,400+ clients who've already transformed their fitness with

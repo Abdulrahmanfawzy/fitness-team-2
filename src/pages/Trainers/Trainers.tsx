@@ -2,7 +2,7 @@ import TrainersHero from "./components/TrainersHero";
 import TrainersSearch from "./components/TrainersSearch";
 import TopTrainers from "./components/TopTrainers";
 import TrainersList from "./components/TrainersList";
-import FilterPanel from "./components/FilterPanel";
+
 
 function Trainers() {
   return (

@@ -26,7 +26,7 @@ function TrainingPackages() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 items-stretch">
         {displayPackages.map((pkg, index) => (
-          <PackageCard key={index} {...(pkg as any)} />
+          <PackageCard key={index} {...pkg} />
         ))}
       </div>
     </section>

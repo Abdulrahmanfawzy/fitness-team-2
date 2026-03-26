@@ -9,7 +9,7 @@ function FeedbackSection() {
         </p>
 
         <h2 className=" text-white text-3xl text-center md:text-5xl font-extrabold ">
-          Proven Results, {" "}
+          Proven Results,{" "}
           <span className=" text-orange mt-2">Trusted Voices</span>
         </h2>
         <Review />
