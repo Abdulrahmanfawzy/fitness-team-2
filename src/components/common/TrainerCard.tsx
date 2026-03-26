@@ -19,7 +19,7 @@ function TrainerCard() {
       </div>
 
       {/* Content */}
-      <div className="p-6 bg-[#2D2D2D">
+      <div className="p-6 bg-[#2D2D2D]">
         {/* name , cost */}
         <div className="flex justify-between items-center mb-5">
           <h4 className="font-bold text-xl text-white tracking-wide">

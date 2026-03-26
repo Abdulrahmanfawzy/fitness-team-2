@@ -13,6 +13,7 @@ const packages = [
       "Full Session Access",
       "Post-Workout Plan",
     ],
+    description: "Ideal for beginners or those wanting to try our elite coaching for a single session.",
   },
   {
     title: "Monthly Pack",
@@ -25,6 +26,7 @@ const packages = [
       "Progress Tracking",
       "Priority Scheduling",
     ],
+    description: "Our most popular plan for consistent progress and dedicated nutritional guidance.",
     isRecommended: true,
   },
   {
@@ -38,6 +40,7 @@ const packages = [
       "24/7 Trainer Access",
       "Custom Meal Plans",
     ],
+    description: "The ultimate transformation experience with full-time access and custom meal plans.",
   },
 ];
 
@@ -50,7 +53,7 @@ function PackagesSection() {
             Packages
           </p>
           <h2 className=" text-white  text-3xl md:text-5xl font-extrabold ">
-            Simple, 
+            Simple,{" "}
             <span className=" text-orange mt-2">Transparent Pricing</span>
           </h2>
           <p className=" mt-2 text-text-secondary text-[16px] sm:text-[18px] md:text-[22px] max-w-2xl mx-auto">

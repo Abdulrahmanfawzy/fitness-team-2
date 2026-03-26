@@ -1,47 +1,71 @@
 import { Check, ShieldCheck, BadgeCheck } from "lucide-react";
-
-interface FeatureRow {
-  feature: string;
-  single: string | boolean | null;
-  monthly: string | boolean | null;
-  premium: string | boolean | null;
-}
-
-const rows: FeatureRow[] = [
-  { feature: "session", single: "1", monthly: "8", premium: "Unlimited" },
-  { feature: "TRAINER", single: "Any", monthly: "Dedicated", premium: "Dedicated" },
-  { feature: "DURATION", single: "60", monthly: "60", premium: "60" },
-  { feature: "NUTRITION PLAN", single: null, monthly: true, premium: true },
-  { feature: "PROGRESS TRACKING", single: null, monthly: true, premium: true },
-  { feature: "PRIORITY BOOKING", single: null, monthly: null, premium: true },
-  { feature: "24/7 ACCESS", single: null, monthly: null, premium: true },
-];
+import usePackages from "@/hooks/usePackages";
+import type { UiPackage } from "@/hooks/usePackages";
 
 function CompareFeatures() {
+  const { packages: apiPackages } = usePackages();
+  
+  // Use API packages only as requested
+  const packages = apiPackages || [];
+
+  const getPackage = (type: string) => 
+    packages.find(pkg => pkg.title.toLowerCase().includes(type.toLowerCase()));
+
+  const singlePkg = getPackage("single");
+  const monthlyPkg = getPackage("monthly");
+  const premiumPkg = getPackage("premium");
+
+  // Define the features we want to compare based on the API data/structure
+  const featureDefinitions = [
+    { label: "SESSIONS", key: "sessions" as const },
+    { label: "TRAINER", key: "trainer" as const },
+    { label: "DURATION", key: "duration" as const },
+    { label: "NUTRITION PLAN", key: "Nutrition Plan Included" as const },
+    { label: "PROGRESS TRACKING", key: "Progress Tracking" as const },
+    { label: "PRIORITY BOOKING", key: "Priority Scheduling" as const },
+    { label: "FULL ACCESS", key: "Full Session Access" as const },
+  ];
+
+  const getFeatureValue = (pkg: UiPackage | undefined, featureKey: string) => {
+    if (!pkg) return null;
+    
+    if (featureKey === "price") return pkg.price;
+    if (featureKey === "sessions") return pkg.sessions.split(' ')[0];
+    if (featureKey === "duration") return pkg.duration.split(' ')[0];
+    if (featureKey === "trainer") return pkg.title.toLowerCase().includes("single") ? "Any" : "Dedicated";
+    
+    // Check if it's a boolean feature in the string array
+    return pkg.features.some((f: string) => f.includes(featureKey)) ? true : null;
+  };
+
   return (
     <section className="pt-6 pb-12 sm:pt-8 sm:pb-16 md:pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <div
           className="w-full border border-white rounded-sm px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9"
-          style={{ background: "linear-gradient(180deg, #220707 0%, #110404 40%, #080808 100%)" }}
+          style={{ background: "linear-gradient(180deg, #1C0606 0%, #110505 40%, #080808 100%)" }}
         >
           <h2 className="text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-bold text-center mb-8 sm:mb-12 md:mb-16 tracking-widest">Compare Features</h2>
           
           {/* Mobile View - Separate Cards for Each Package */}
           <div className="block sm:hidden">
             {[
-              { name: 'SINGLE', key: 'single' as const },
-              { name: 'MONTHLY', key: 'monthly' as const },
-              { name: 'Premium', key: 'premium' as const }
-            ].map((plan) => (
-              <div key={plan.key} className="mb-6 last:mb-0">
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 text-center">{plan.name}</h3>
-                <div className="border border-white/20 rounded-lg p-4">
-                  {rows.map((row, index) => (
-                    <div key={index} className="flex justify-between items-center py-3 border-b border-white/10 last:border-0">
-                      <span className="text-gray-300 font-semibold capitalize tracking-wider text-base md:text-lg">{row.feature}</span>
-                      <span className="font-bold text-white text-base md:text-lg">
-                        {row[plan.key] === true ? <Check size={16} className="text-orange" /> : row[plan.key] ?? ""}
+              { name: 'SINGLE', pkg: singlePkg },
+              { name: 'MONTHLY', pkg: monthlyPkg },
+              { name: 'Premium', pkg: premiumPkg }
+            ].map((plan, idx) => (
+              <div key={idx} className="mb-8 last:mb-0">
+                <div className="text-center mb-5">
+                  <h3 className="text-xl font-bold text-white mb-1 uppercase tracking-wider">{plan.name}</h3>
+                </div>
+                <div className="border border-white/20 rounded-lg p-4 bg-white/5">
+                  {featureDefinitions.map((feat, index) => (
+                    <div key={index} className="flex justify-between items-center py-3 border-b border-white/10 last:border-0 text-sm">
+                      <span className="text-gray-300 font-semibold capitalize tracking-wider">{feat.label}</span>
+                      <span className="font-bold text-white">
+                        {getFeatureValue(plan.pkg, feat.key) === true 
+                          ? <Check size={16} className="text-orange" /> 
+                          : (getFeatureValue(plan.pkg, feat.key) ?? "")}
                       </span>
                     </div>
                   ))}
@@ -53,27 +77,39 @@ function CompareFeatures() {
           {/* Desktop View - Original Table */}
           <div className="hidden sm:block">
             <div className="overflow-x-auto">
-              <table className="w-full text-left">
+              <table className="w-full text-left table-fixed border-collapse">
                 <thead>
                   <tr className="border-b border-white/10 text-sm md:text-lg lg:text-xl font-black text-text-secondary capitalize tracking-widest">
-                    <th className="pb-10 text-white text-lg md:text-3xl">Feature</th>
-                    <th className="pb-10 text-center text-base md:text-2xl text-white">SINGLE</th>
-                    <th className="pb-10 text-center text-base md:text-2xl text-white">MONTHLY</th>
-                    <th className="pb-10 text-center text-base md:text-2xl text-white">Premium</th>
+                    <th className="pb-10 text-white text-lg md:text-3xl w-1/4">Feature</th>
+                    <th className="pb-10 text-center w-1/4 align-top">
+                      <div className="text-white text-base md:text-2xl mb-1 uppercase">SINGLE</div>
+                    </th>
+                    <th className="pb-10 text-center w-1/4 align-top">
+                      <div className="text-white text-base md:text-2xl mb-1 uppercase">MONTHLY</div>
+                    </th>
+                    <th className="pb-10 text-center w-1/4 align-top">
+                      <div className="text-white text-base md:text-2xl mb-1 uppercase">Premium</div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
-                  {rows.map((row, index) => (
+                  {featureDefinitions.map((feat, index) => (
                     <tr key={index} className="border-b border-white/10 group hover:bg-white/5 transition-colors">
-                      <td className="py-6 text-gray-300 font-semibold capitalize tracking-wider text-base md:text-lg">{row.feature}</td>
+                      <td className="py-6 text-gray-300 font-semibold capitalize tracking-wider text-base md:text-lg">{feat.label}</td>
                       <td className="py-6 text-center font-bold text-white text-base md:text-lg">
-                        {row.single === true ? <Check size={20} className="mx-auto text-orange" /> : row.single ?? ""}
+                        {getFeatureValue(singlePkg, feat.key) === true 
+                          ? <Check size={20} className="mx-auto text-orange" /> 
+                          : (getFeatureValue(singlePkg, feat.key) ?? "")}
                       </td>
                       <td className="py-6 text-center font-bold text-white text-base md:text-lg">
-                        {row.monthly === true ? <Check size={20} className="mx-auto text-orange" /> : row.monthly ?? ""}
+                        {getFeatureValue(monthlyPkg, feat.key) === true 
+                          ? <Check size={20} className="mx-auto text-orange" /> 
+                          : (getFeatureValue(monthlyPkg, feat.key) ?? "")}
                       </td>
                       <td className="py-6 text-center font-bold text-white text-base md:text-lg">
-                        {row.premium === true ? <Check size={20} className="mx-auto text-orange" /> : row.premium ?? ""}
+                        {getFeatureValue(premiumPkg, feat.key) === true 
+                          ? <Check size={20} className="mx-auto text-orange" /> 
+                          : (getFeatureValue(premiumPkg, feat.key) ?? "")}
                       </td>
                     </tr>
                   ))}
@@ -82,7 +118,7 @@ function CompareFeatures() {
             </div>
           </div>
         </div>
-
+        
         {/* Trust Badges */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-8 md:mt-12 w-full">
           <div className="bg-card-standard border border-card-border px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 lg:py-6 rounded-lg shadow-lg flex items-center space-x-2 sm:space-x-2.5">

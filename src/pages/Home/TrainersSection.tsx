@@ -11,7 +11,7 @@ function TrainersSection() {
           </p>
 
           <h2 className=" text-white text-4xl md:text-5xl font-extrabold ">
-            Meet the <span className=" text-orange mt-2"> Experts</span>
+            Meet the <span className=" text-orange mt-2"> Experts</span>
           </h2>
         </div>
 

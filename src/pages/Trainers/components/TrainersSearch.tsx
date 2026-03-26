@@ -1,8 +1,14 @@
 import { IoSearchOutline } from "react-icons/io5";
 import { CiFilter } from "react-icons/ci";
 import { LuArrowUpDown } from "react-icons/lu";
+import { useState } from "react";
+import FilterPanel from "./FilterPanel";
+import SortPanel from "./SortPanel";
 
 function TrainersSearch() {
+  const [filter, setFilter] = useState(false);
+  const [sort, setSort] = useState(false);
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       {/* search & filters */}
@@ -18,15 +24,36 @@ function TrainersSearch() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3 w-full md:w-auto">
-          <button className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all duration-200 border border-[#444] rounded-xl px-7 h-[54px] text-white text-[16px] font-medium">
+        <div className="flex items-center gap-3 w-full md:w-auto relative">
+          <button
+            onClick={() => {
+              setFilter(!filter);
+              setSort(false);
+            }}
+            className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all duration-200 border border-[#444] rounded-xl px-7 h-[54px] text-white text-[16px] font-medium"
+          >
             <CiFilter className="text-xl" />
             Filter
           </button>
-          <button className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all duration-200 border border-[#444] rounded-xl px-7 h-[54px] text-white text-[16px] font-medium">
+          
+          {filter && (
+            <FilterPanel onClose={() => setFilter(false)} />
+          )}
+
+          <button 
+            onClick={() => {
+              setSort(!sort);
+              setFilter(false);
+            }}
+            className="flex-1 md:flex-none flex justify-center items-center gap-2 bg-[#2C2C2E] hover:bg-[#3A3A3C] transition-all duration-200 border border-[#444] rounded-xl px-7 h-[54px] text-white text-[16px] font-medium"
+          >
             Sort
             <LuArrowUpDown />
           </button>
+
+          {sort && (
+            <SortPanel onClose={() => setSort(false)} />
+          )}
         </div>
       </div>
     </div>

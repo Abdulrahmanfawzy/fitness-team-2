@@ -154,7 +154,7 @@ body {
 
 /* Dark Gradient Background — matches the Compare Features gradient */
 .bg-dark-gradient {
-  background: linear-gradient(180deg, #220707 0%, #110404 40%, #080808 100%);
+  background: linear-gradient(180deg, #1C0606 0%, #110505 40%, #080808 100%);
 }
 
 .bg-card-recommended {

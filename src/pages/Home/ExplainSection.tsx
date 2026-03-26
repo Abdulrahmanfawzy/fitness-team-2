@@ -8,7 +8,7 @@ function ExplainSection() {
       <p className=" p-1 rounded-xl text-orange border-orange border w-fit font-bold bg-orange-800/25  mb-2">
         How It works
       </p>
-      <p className=" text-3xl text-center md:text-4xl font-bold">Three Steps to Your Best Self</p>
+      <p className=" text-3xl text-center md:text-4xl font-bold">Three Steps to Your Best Self</p>
       <p className=" text-gray-400 text-sm font-medium max-w-lg text-center">
         We've made the booking process frictionless so you can focus on what
         matters — your training.
