@@ -24,6 +24,10 @@ import ResetPassword from "./pages/Authentication/ResetPassword";
 import CompleteProfile from "./pages/Authentication/CompleteProfile";
 import Notifications from "./pages/Notifications/Notifications";
 import Booking from "./pages/Booking/Booking";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
 
   const routers = createBrowserRouter([
@@ -49,7 +53,9 @@ function App() {
   ])
   return (
     <div className="dark">
-     <RouterProvider router={routers}></RouterProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={routers}></RouterProvider>
+      </QueryClientProvider>
     </div>
   )
 }

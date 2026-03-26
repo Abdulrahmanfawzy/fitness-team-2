@@ -1,5 +1,4 @@
 import PackageCard from "../../components/common/PackageCard";
-import { packages as fallbackPackages } from "@/components/lib/constants/Trainer/TrainerData";
 import usePackages from "@/hooks/usePackages";
 
 function TrainingPackages() {
@@ -13,8 +12,8 @@ function TrainingPackages() {
     );
   }
 
-  // Use fallback if API returns empty
-  const displayPackages = (packages && packages.length > 0) ? packages : fallbackPackages;
+  // Use API packages only as requested
+  const displayPackages = packages || [];
 
   return (
     <section className="pt-10 pb-8">
