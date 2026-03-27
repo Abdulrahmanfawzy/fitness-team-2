@@ -22,7 +22,7 @@ function ForgotPassword() {
       className=" px-5 py-7 z-10 text-white  border border-orange rounded-2xl w-[95%] md:w-[55%] lg:w-[35%]  bg-black/70 shadow-2xl flex flex-col items-center justify-center gap-3"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h2 className=" text-3xl font-bold ">Forgot your password?</h2>
+      <h2 className=" text-3xl font-bold text-center ">Forgot your password?</h2>
       <h2 className=" text-lg text-gray-400 text-center">
         Enter your Email Address so we can send you a link to reset your
         password!

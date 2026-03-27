@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { AuthenticationCntextProvider } from "./lib/Cntext/AuthenticationCntext";
 
 // Layoutes
 import MainLayout from "./components/layout/MainLayout";
@@ -53,9 +54,11 @@ function App() {
   ])
   return (
     <div className="dark">
+     <AuthenticationCntextProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={routers}></RouterProvider>
-      </QueryClientProvider>
+     <RouterProvider router={routers}></RouterProvider>
+     </QueryClientProvider>
+     </AuthenticationCntextProvider>
     </div>
   )
 }
