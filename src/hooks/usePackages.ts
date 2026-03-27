@@ -1,34 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/axios";
-
-export type PackageFeatures = {
-  progress_tracking: boolean;
-  nutrition_plan: boolean;
-  priority_booking: boolean;
-  full_access: boolean;
-  [key: string]: boolean;
-};
-
-export type Package = {
-  id: number;
-  title: string;
-  description: string;
-  sessions: number;
-  duration_days: number;
-  features: PackageFeatures;
-  is_recommended?: boolean;
-};
-
-export type UiPackage = {
-  id: number;
-  title: string;
-  price: string;
-  duration: string;
-  sessions: string;
-  description: string;
-  features: string[];
-  isRecommended: boolean;
-};
+import type { Package, UiPackage } from "@/types/package";
 
 const usePackages = () => {
   const { data: packages, isLoading: loading, error } = useQuery({
@@ -44,7 +16,7 @@ const usePackages = () => {
         return [];
       }
 
-      return rawData.map((pkg: Package) => {
+      return rawData.map((pkg: Package): UiPackage => {
         const features: string[] = [];
         
         // Map the boolean features object to a string array for the UI
