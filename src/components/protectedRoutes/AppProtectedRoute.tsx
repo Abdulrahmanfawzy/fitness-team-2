@@ -7,8 +7,9 @@ import AuthenticationCntext from "@/lib/Cntext/AuthenticationCntext";
 
 function AppProtectedRoute({ children }: RouteProps) {
   let { isLogedIn } = useContext(AuthenticationCntext);
-  
-  return isLogedIn ? children : <Navigate to={"/login"} />
+
+  const token = localStorage.getItem("token");
+  return isLogedIn || token ? children : <Navigate to={"/login"} />;
 }
 
 export default AppProtectedRoute;

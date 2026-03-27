@@ -34,7 +34,7 @@ function Login() {
       setLoding(false);
       setIsLogedIn(respons.token);
       localStorage.setItem("token", respons.token);
-      navigate("/complete-profile");
+      navigate("/");
     } else {
       setLoding(false);
       setalrtEror(respons.message);

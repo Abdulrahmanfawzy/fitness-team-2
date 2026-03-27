@@ -12,12 +12,9 @@ import { SendSignUp } from "@/lib/Api/Authentication/Authentication";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { useOutletContext } from "react-router-dom";
-import { useContext } from "react";
-import AuthenticationCntext from "@/lib/Cntext/AuthenticationCntext";
 
 function SignUp() {
   const [loding, setLoding] = useState(false);
-  let { setIsLogedIn } = useContext(AuthenticationCntext);
 
   const { setalrtEror } = useOutletContext();
 
@@ -39,8 +36,7 @@ function SignUp() {
 
     if (respons.status === true) {
       setLoding(false);
-      setIsLogedIn(respons.token)
-      localStorage.setItem("token",respons.token)
+      localStorage.setItem("token", respons.token);
       navigate("/complete-profile");
     } else {
       setLoding(false);
