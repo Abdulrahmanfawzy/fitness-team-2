@@ -1,18 +1,8 @@
 import { CheckCircle2, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { UiPackage } from "@/types/package";
 
-interface PackageCardProps {
-  id?: number | string;
-  title: string;
-  price: string;
-  duration: string;
-  sessions: string;
-  description: string;
-  features: string[];
-  isRecommended?: boolean;
-}
-
-const PackageCard: React.FC<PackageCardProps> = ({ 
+const PackageCard: React.FC<UiPackage> = ({ 
   id,
   title, 
   price, 

@@ -1,6 +1,6 @@
 import { Check, ShieldCheck, BadgeCheck } from "lucide-react";
 import usePackages from "@/hooks/usePackages";
-import type { UiPackage } from "@/hooks/usePackages";
+import type { UiPackage } from "@/types/package";
 
 function CompareFeatures() {
   const { packages: apiPackages } = usePackages();
