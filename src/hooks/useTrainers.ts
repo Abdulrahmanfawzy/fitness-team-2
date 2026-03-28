@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import axiosInstance from "@/lib/Axios/axiosInstance";
 import type { Trainer } from "@/types/trainer";
 
 const useTrainers = () => {
@@ -10,7 +10,7 @@ const useTrainers = () => {
   } = useQuery({
     queryKey: ["landing-trainers"],
     queryFn: async () => {
-      const response = await api.get<{ data: Trainer[] } | Trainer[]>(
+      const response = await axiosInstance.get<{ data: Trainer[] } | Trainer[]>(
         "api/landing/trainers"
       );
 
