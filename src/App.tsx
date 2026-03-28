@@ -32,147 +32,27 @@ const queryClient = new QueryClient();
 
 function App() {
   const routers = createBrowserRouter([
-    {
-      path: "",
-      element: <MainLayout />,
-      children: [
-        {
-          index: true,
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Home />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "packages",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Packages />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "trainers",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Trainers />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "contact",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Contact />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "booking",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Booking />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "profile",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <UserProfile />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "notifications",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <Notifications />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "trainers/:id",
-          element: (
-            <AppProtectedRoute>
-              {" "}
-              <TrainerProfile />{" "}
-            </AppProtectedRoute>
-          ),
-        },
-        {
-          path: "*",
-          element: (
-            <AppProtectedRoute>
-              <NotFoundPage />
-            </AppProtectedRoute>
-          ),
-        },
-      ],
-    },
-    {
-      path: "",
-      element: <AuthenticationLayout />,
-      children: [
-        {
-          path: "login",
-          element: (
-            <AuthenticationProtectedRoute>
-              <Login />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-        {
-          path: "sign-up",
-          element: (
-            <AuthenticationProtectedRoute>
-              <SignUp />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-        {
-          path: "forgot-password",
-          element: (
-            <AuthenticationProtectedRoute>
-              <ForgotPassword />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-        {
-          path: "verify",
-          element: (
-            <AuthenticationProtectedRoute>
-              <VerifyEmail />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-        {
-          path: "reset-password",
-          element: (
-            <AuthenticationProtectedRoute>
-              <ResetPassword />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-        {
-          path: "complete-profile",
-          element: (
-            <AuthenticationProtectedRoute>
-              <CompleteProfile />
-            </AuthenticationProtectedRoute>
-          ),
-        },
-      ],
-    },
-  ]);
+    {path : "" , element : <MainLayout /> , children : [
+      {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
+      {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
+      {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
+      {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
+      {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
+      {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
+      {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
+      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
+      {path : "complete-profile" , element : <AppProtectedRoute><CompleteProfile/></AppProtectedRoute> } ,
+      {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
+    ]} ,
+    {path : "" , element : <AuthenticationLayout /> , children : [
+      {path : "login" , element : <AuthenticationProtectedRoute><Login/></AuthenticationProtectedRoute> } ,
+      {path : "sign-up" , element : <AuthenticationProtectedRoute><SignUp/></AuthenticationProtectedRoute> } ,
+      {path : "forgot-password" , element : <AuthenticationProtectedRoute><ForgotPassword/></AuthenticationProtectedRoute> } ,
+      {path : "verify" , element : <AuthenticationProtectedRoute><VerifyEmail/></AuthenticationProtectedRoute> } ,
+      {path : "reset-password" , element : <AuthenticationProtectedRoute><ResetPassword/></AuthenticationProtectedRoute> } ,
+      
+    ]} ,
+  ])
   return (
     <div className="dark">
       <AuthenticationCntextProvider>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import pic from "@/assets/pic.jpg";
 import { Clock, FileSpreadsheet, MapPin, type LucideIcon } from "lucide-react";
-
+import { useQuery } from "@tanstack/react-query";
+import { getUpcomingSessions } from "@/lib/Api/Authentication/profile";
 type Session = {
     id: number;
     title: string;
@@ -27,6 +28,10 @@ export default function UpcomingSessions() {
         { icon: Clock, title: "9:00 AM - 10:00 AM" },
         { icon: MapPin, title: "Downtown Gym" },
     ]);
+const { data, isLoading } = useQuery({
+    queryKey: ["profile-upcoming-sessions"],
+    queryFn: getUpcomingSessions,
+  });
 
     return (
         <div className=" px-4 md:px-8 mt-10">
@@ -66,10 +71,10 @@ export default function UpcomingSessions() {
                     </div>
                     <div className="flex flex-wrap gap-2">
                         <button className="border border-[#FF4D4D] px-9 py-2.5 rounded-md text-xs font-bold hover:bg-[#FF4D4D] transition">
-                            Reschedule
+                            Reschedule {data?.reschedule}
                         </button>
                         <button className="bg-[#FF4D4D] px-9 py-2.5 rounded-md tracking-tight text-xs font-bold hover:bg-black border border-[#FF4D4D] transition">
-                            View Details
+                            View Details {data?.viewDetails}
                         </button>
                     </div>
                 </div>

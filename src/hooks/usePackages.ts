@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import axiosInstance from "@/lib/Axios/axiosInstance";
 import type { Package, UiPackage } from "@/types/package";
 
 const usePackages = () => {
   const { data: packages, isLoading: loading, error } = useQuery({
     queryKey: ["packages"],
     queryFn: async () => {
-      const response = await api.get<{ data: Package[] }>("api/packages");
+      const response = await axiosInstance.get<{ data: Package[] }>("/api/packages");
       
       // Handle both flat array and { data: [...] } structure
       const rawData = response.data.data || response.data;

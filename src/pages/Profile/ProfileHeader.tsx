@@ -1,6 +1,8 @@
 import { CalendarCheck2, Package, Clock, type LucideIcon } from "lucide-react";
 import React, { useState } from "react";
 import Profile from "@/assets/Profile.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileHeader } from "@/lib/Api/Authentication/profile";
 type User = {
     name: string;
     memberSince: number;
@@ -26,20 +28,25 @@ const ProfileHeader: React.FC = () => {
     ]);
 
     if (!user) return null;
+  const { data, isLoading } = useQuery({
+    queryKey: ["profile-header"],
+    queryFn: getProfileHeader,
+  });
+
 
     return (
         <div className="w-full  text-white p-4 md:p-8">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
                 <div className="flex items-center gap-4">
                     <img
-                        src={user.image}
+                        src={data?.avatar}
                         className="w-20 h-20 rounded-full" />
                     <div>
                         <h2 className="text-3xl tracking-wide font-bold">
-                            {user.name}
+                            {data?.name}
                         </h2>
                         <p className="font-extralight tracking-wide ">
-                            Member since {user.memberSince}
+                            Member since {data?.memberSince}
                         </p>
                     </div>
                 </div>

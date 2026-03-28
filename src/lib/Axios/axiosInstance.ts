@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "https://round10-backend-fitness.huma-volve.com",
-  timeout: 5000,
+  timeout: 10000 
 });
 
 axiosInstance.interceptors.request.use((config) => {
