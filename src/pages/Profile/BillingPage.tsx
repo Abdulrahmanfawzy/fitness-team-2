@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import PayCard from "@/assets/Container.png";
+import { useQuery } from "@tanstack/react-query";
+import { getBillingPage } from "@/lib/Api/Authentication/profile";
 type Invoice = {
   id: string;
   date: string;
@@ -19,6 +21,10 @@ export default function BillingPage() {
       status: "Paid",
     },
   ]);
+const { data, isLoading } = useQuery({
+    queryKey: ["profile-billing-page"],
+    queryFn: getBillingPage,
+  });
 
   return (
     <div className="px-4 md:px-8 mt-6 md:mt-10 ">
@@ -27,7 +33,7 @@ export default function BillingPage() {
         <img src={PayCard} alt="Payment Card" className="w-full h-full object-cover rounded-xl" />
         <div className="w-full h-full rounded-xl bg-[#2D2D2D] flex flex-col items-center justify-center gap-2 p-6">
           <Plus className="mb-4 rounded-full bg-[#3D3D3D]" />
-          <p className="text-2xl mb-3">Add New Card</p>
+          <p className="text-2xl mb-3">Add New Card {data}</p>
           <p className="text-xs text-[#A7A7A7] mt-2">
             Supports Visa, Mastercard, AMEX
           </p>

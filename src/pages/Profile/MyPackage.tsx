@@ -1,6 +1,7 @@
 import { Package, Check, type LucideIcon } from "lucide-react";
 import { useState } from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import { getMyPackage } from "@/lib/Api/Authentication/profile";
 type Package = {
     name: string;
     status: string;
@@ -28,6 +29,11 @@ export default function MyPackage() {
     ];
 
     if (!pkg) return <p>Loading...</p>;
+    const { data, isLoading } = useQuery({
+    queryKey: ["profile-my-package"],
+    queryFn: getMyPackage,
+  });
+
 
     const completed = pkg.total - pkg.remaining;
     const progress = (completed / pkg.total) * 100;
@@ -51,7 +57,7 @@ export default function MyPackage() {
                         </span>
                     </div>
                     <button className="bg-[#FF4D4D] px-9 py-2.5 rounded-md tracking-tight text-xs font-bold hover:bg-black border border-[#FF4D4D] transition">
-                        Upgrade Package
+                        Upgrade Package {data?.upgradeOption}
                     </button>
                 </div>
                 <div className="mt-6 ">

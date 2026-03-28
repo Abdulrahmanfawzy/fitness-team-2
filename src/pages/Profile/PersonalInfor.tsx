@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import { getPersonalInfor } from "@/lib/Api/Authentication/profile";
 export default function PersonalInfor() {
   const [form, setForm] = useState({
     fullName: "Mohamed Alaa Ahmed",
@@ -18,6 +19,10 @@ export default function PersonalInfor() {
     ["gender", "Gender"],
     ["location", "Location"],
   ];
+const { data, isLoading } = useQuery({
+    queryKey: ["profile-personal-info"],
+    queryFn: getPersonalInfor,
+  });
 
   return (
     <>
@@ -41,7 +46,7 @@ export default function PersonalInfor() {
             ))}
           </div>
           <button className="bg-[#FF4D4D] mt-4 w-full md:w-1/2 py-3 rounded block mx-auto text-[#FFFFFF] font-semibold text-sm hover:bg-black border border-[#FF4D4D] transition">
-            Save Changes
+            Save Changes {data?.saveChanges}
           </button>
         </div>
       </div>

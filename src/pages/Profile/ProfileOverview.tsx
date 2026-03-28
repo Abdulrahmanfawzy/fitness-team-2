@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Profile from "@/assets/Profile.jpg";
 import { Goal, Dumbbell, type LucideIcon } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getProfileOverview } from "@/lib/Api/Authentication/profile";
 type InfoCard = {
     title: string;
     value: string;
@@ -24,6 +26,10 @@ const ProfileOverview: React.FC = () => {
             icon: Dumbbell,
         },
     ]);
+const { data, isLoading } = useQuery({
+    queryKey: ["profile-Overview"],
+    queryFn: getProfileOverview,
+  });
 
     return (
         <div className=" text-white px-4 md:px-8 ">
@@ -37,10 +43,10 @@ const ProfileOverview: React.FC = () => {
                 <div className="flex flex-col items-start gap-2">
                     <div className="flex gap-3">
                         <button className="bg-[#FF4D4D] px-9 py-2.5 rounded-md tracking-tight text-xs font-bold hover:bg-black border border-[#FF4D4D] transition">
-                            Upload New
+                            Upload New {data?.uploadType}
                         </button>
                         <button className="border border-[#FF4D4D] px-9 py-2.5 rounded-md text-xs font-bold hover:bg-[#FF4D4D] transition">
-                            Remove
+                            Remove {data?.removeType}
                         </button>
                     </div>
                     <p className=" text-[#A7A7A7] text-xs">
