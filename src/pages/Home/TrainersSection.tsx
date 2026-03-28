@@ -1,29 +1,31 @@
 import TrainerCard from "@/components/common/TrainerCard";
 import { Link } from "react-router-dom";
+import useTrainers from "@/hooks/useTrainers";
 
 function TrainersSection() {
+  const { trainers, loading, error } = useTrainers();
+
   return (
-    <div className=" my-24   w-[95%] md:w-[85%] mx-auto px-5  ">
-      <div className=" flex items-end gap-2 justify-between">
+    <div className="my-24 w-[95%] md:w-[85%] mx-auto px-5">
+      <div className="flex items-end gap-2 justify-between">
         <div>
-          <p className=" p-1 rounded-xl text-orange border-orange border w-fit font-bold bg-orange-800/25  mb-2">
+          <p className="p-1 rounded-xl text-orange border-orange border w-fit font-bold bg-orange-800/25 mb-2">
             Our Trainers
           </p>
-
-          <h2 className=" text-white text-4xl md:text-5xl font-extrabold ">
-            Meet the <span className=" text-orange mt-2"> Experts</span>
+          <h2 className="text-white text-4xl md:text-5xl font-extrabold">
+            Meet the <span className="text-orange mt-2"> Experts</span>
           </h2>
         </div>
 
-        <div className=" flex flex-col md:flex-row items-center gap-3">
-          <div className="flex  items-center gap-2  ">
+        <div className="flex flex-col md:flex-row items-center gap-3">
+          <div className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className=" flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
+              className="flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
             >
               <path
                 strokeLinecap="round"
@@ -38,7 +40,7 @@ function TrainersSection() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className=" flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
+              className="flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
             >
               <path
                 strokeLinecap="round"
@@ -49,7 +51,7 @@ function TrainersSection() {
           </div>
 
           <Link
-            className=" w-32 flex items-center justify-center rounded-md border-orange border text-orange text-sm h-9 "
+            className="w-32 flex items-center justify-center rounded-md border-orange border text-orange text-sm h-9"
             to={"/trainers"}
           >
             View All
@@ -57,11 +59,48 @@ function TrainersSection() {
         </div>
       </div>
 
-      <div className=" mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 ">
-        <TrainerCard />
-        <TrainerCard />
-        <TrainerCard />
-      </div>
+      {/* Loading State */}
+      {loading && (
+        <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="rounded-2xl overflow-hidden bg-[#2C2C2E] shadow-lg mx-auto w-full animate-pulse"
+            >
+              <div className="h-[250px] bg-[#3A3A3C]" />
+              <div className="p-6 space-y-4">
+                <div className="h-5 bg-[#3A3A3C] rounded w-2/3" />
+                <div className="h-4 bg-[#3A3A3C] rounded w-full" />
+                <div className="h-4 bg-[#3A3A3C] rounded w-3/4" />
+                <div className="h-10 bg-[#3A3A3C] rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !loading && (
+        <p className="mt-9 text-red-400 text-center">{error}</p>
+      )}
+
+      {/* Trainers Grid */}
+      {!loading && !error && (
+        <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {trainers.length > 0 ? (
+            trainers.map((trainer) => (
+              <TrainerCard key={trainer.id} trainer={trainer} />
+            ))
+          ) : (
+            /* Fallback to static cards if API returns empty */
+            <>
+              <TrainerCard />
+              <TrainerCard />
+              <TrainerCard />
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
