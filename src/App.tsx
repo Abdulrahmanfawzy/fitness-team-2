@@ -26,41 +26,189 @@ import CompleteProfile from "./pages/Authentication/CompleteProfile";
 import Notifications from "./pages/Notifications/Notifications";
 import Booking from "./pages/Booking/Booking";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {Toaster} from 'react-hot-toast'
 
 const queryClient = new QueryClient();
 
 function App() {
-
   const routers = createBrowserRouter([
-    {path : "" , element : <MainLayout /> , children : [
-      {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
-      {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
-      {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
-      {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
-      {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
-      {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
-      {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
-      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
-      {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
-    ]} ,
-    {path : "" , element : <AuthenticationLayout /> , children : [
-      {path : "login" , element : <AuthenticationProtectedRoute><Login/></AuthenticationProtectedRoute> } ,
-      {path : "sign-up" , element : <AuthenticationProtectedRoute><SignUp/></AuthenticationProtectedRoute> } ,
-      {path : "forgot-password" , element : <AuthenticationProtectedRoute><ForgotPassword/></AuthenticationProtectedRoute> } ,
-      {path : "verify" , element : <AuthenticationProtectedRoute><VerifyEmail/></AuthenticationProtectedRoute> } ,
-      {path : "reset-password" , element : <AuthenticationProtectedRoute><ResetPassword/></AuthenticationProtectedRoute> } ,
-      {path : "complete-profile" , element : <AuthenticationProtectedRoute><CompleteProfile/></AuthenticationProtectedRoute> } ,
-    ]} ,
-  ])
+    {
+      path: "",
+      element: <MainLayout />,
+      children: [
+        {
+          index: true,
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Home />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "packages",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Packages />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "trainers",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Trainers />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "contact",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Contact />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "booking",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Booking />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <UserProfile />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "notifications",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <Notifications />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "trainers/:id",
+          element: (
+            <AppProtectedRoute>
+              {" "}
+              <TrainerProfile />{" "}
+            </AppProtectedRoute>
+          ),
+        },
+        {
+          path: "*",
+          element: (
+            <AppProtectedRoute>
+              <NotFoundPage />
+            </AppProtectedRoute>
+          ),
+        },
+      ],
+    },
+    {
+      path: "",
+      element: <AuthenticationLayout />,
+      children: [
+        {
+          path: "login",
+          element: (
+            <AuthenticationProtectedRoute>
+              <Login />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+        {
+          path: "sign-up",
+          element: (
+            <AuthenticationProtectedRoute>
+              <SignUp />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+        {
+          path: "forgot-password",
+          element: (
+            <AuthenticationProtectedRoute>
+              <ForgotPassword />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+        {
+          path: "verify",
+          element: (
+            <AuthenticationProtectedRoute>
+              <VerifyEmail />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+        {
+          path: "reset-password",
+          element: (
+            <AuthenticationProtectedRoute>
+              <ResetPassword />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+        {
+          path: "complete-profile",
+          element: (
+            <AuthenticationProtectedRoute>
+              <CompleteProfile />
+            </AuthenticationProtectedRoute>
+          ),
+        },
+      ],
+    },
+  ]);
   return (
     <div className="dark">
-     <AuthenticationCntextProvider>
-      <QueryClientProvider client={queryClient}>
-     <RouterProvider router={routers}></RouterProvider>
-     </QueryClientProvider>
-     </AuthenticationCntextProvider>
+      <AuthenticationCntextProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            gutter={8}
+            containerClassName=""
+            containerStyle={{}}
+            toasterId="default"
+            toastOptions={{
+              // Define default options
+              className: "",
+              duration: 5000,
+              removeDelay: 1000,
+              style: {
+                background: "#363636",
+                color: "#fff",
+              },
+
+              // Default options for specific types
+              success: {
+                duration: 3000,
+                iconTheme: {
+                  primary: "green",
+                  secondary: "black",
+                },
+              },
+            }}
+          />
+          <RouterProvider router={routers}></RouterProvider>
+        </QueryClientProvider>
+      </AuthenticationCntextProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
