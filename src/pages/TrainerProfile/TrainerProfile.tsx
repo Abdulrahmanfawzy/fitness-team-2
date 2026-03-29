@@ -8,16 +8,13 @@ import Others from "@/components/Trainer/others/Others";
 import Schedule from "@/components/Trainer/schedule/Schedule";
 import TrainerInfo from "@/components/Trainer/trainerInfo/TrainerInfo";
 import { useGetTrainer } from "@/lib/api/TrainerProfile/profile/get-trainerProfile";
-import type {
-  Availability,
-  AvailabilityException,
-  Package,
-  Trainer,
-} from "@/lib/types/Trainer/TrainerTypes";
+import type { Package, Trainer } from "@/lib/types/Trainer/TrainerTypes";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const trainer = trainers[0];
 function TrainerProfile() {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const { id } = useParams();
   const trainerId = Number(id);
   const { data, isError, isLoading } = useGetTrainer(trainerId);
@@ -25,9 +22,9 @@ function TrainerProfile() {
   if (isError) return <Error />;
   const trainerData: Trainer = data.data;
   const packages: Package[] = trainerData.packages;
-  const availability: Availability[] = trainerData.availability;
-  const availabilityException: AvailabilityException[] =
-    trainerData.availability_exceptions;
+  trainerData.availability_exceptions;
+  const reviewsData = trainerData.reviews;
+
   return (
     <section className="py-10 w-full text-accent-foreground bg-gray-gradient">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">
@@ -35,7 +32,7 @@ function TrainerProfile() {
       </h2>
 
       {/* Trainer info card */}
-      <TrainerInfo trainer={trainerData}/>
+      <TrainerInfo trainer={trainerData} />
 
       {/* Bio */}
       <div className="mb-12">
@@ -48,31 +45,36 @@ function TrainerProfile() {
       </div>
 
       {/* Certifications */}
-      <Certifications trainer={trainerData}/>
+      <Certifications trainer={trainerData} />
 
       <div className="bg-dark-gradient p-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-5">
-          {/* {packages.map((pack, index) => (
-            <PackageCard
+          {packages.map((pack, index) => (
+            <div
+              className=""
               key={index}
-              id={pack.package_id}
-              description=""
-              duration_days={pack.duration_days}
-              sessions={pack.sessions}
-              title={pack.title}
-            />
-          ))} */}
+              onClick={() => setSelectedId(pack.trainer_package_id)}
+            >
+              <PackageCard
+                package_id={pack.package_id}
+                description={pack.description}
+                duration_days={pack.duration_days}
+                sessions={pack.sessions}
+                title={pack.title}
+                price={pack.price}
+                trainer_package_id={pack.trainer_package_id}
+              />
+            </div>
+          ))}
         </div>
 
         {/* Schedule */}
-        <Schedule
-          trainerData={trainerData}
-        />
+        <Schedule trainerData={trainerData} trainerPackageId={selectedId} />
       </div>
 
       <div className="bg-dark-gradient p-5">
         {/* Reviews  */}
-        <Review />
+        <Review reviews={reviewsData} />
 
         {/* Other trainers */}
         <Others />

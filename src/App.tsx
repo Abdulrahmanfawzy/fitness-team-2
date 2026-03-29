@@ -40,7 +40,7 @@ function App() {
       {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
       {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
-      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
+      {path : "trainers/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
       {path : "complete-profile" , element : <AppProtectedRoute><CompleteProfile/></AppProtectedRoute> } ,
       {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,

@@ -170,10 +170,8 @@ body {
 }
 
 .bg-gray-gradient {
-  background: linear-gradient(180deg, #363636 0%, #363636 30%, #121212 100%);
-  min-height: 100vh;
+  background-color: #121212 
 }
-
 
 /* custom-scroll */
 

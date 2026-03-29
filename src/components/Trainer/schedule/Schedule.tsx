@@ -3,11 +3,7 @@ import TimeSlot from "./TimeSlot";
 import Calendar from "./Calendar";
 import { trainers } from "@/components/lib/constants/Trainer/TrainerData";
 import { Link } from "react-router-dom";
-import type {
-  Availability,
-  AvailabilityException,
-  Trainer,
-} from "@/lib/types/Trainer/TrainerTypes";
+import type { Trainer } from "@/lib/types/Trainer/TrainerTypes";
 import {
   generateTimeSlots,
   getScheduleForDate,
@@ -15,9 +11,10 @@ import {
 
 interface Props {
   trainerData: Trainer;
+  trainerPackageId: number | null;
 }
 
-const Schedule = ({ trainerData }: Props) => {
+const Schedule = ({ trainerData, trainerPackageId }: Props) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -85,7 +82,13 @@ const Schedule = ({ trainerData }: Props) => {
           </div>
           <Link
             to={`/booking-confirmed/${trainers[0].id}`}
-            state={{ selectedTime, currentMonth, year, trainerName }}
+            state={{
+              selectedTime,
+              currentMonth,
+              year,
+              trainerName,
+              trainerPackageId,
+            }}
             className="bg-[#e8453c] hover:bg-[#d63a31] text-white px-5 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2"
           >
             Continue booking →
