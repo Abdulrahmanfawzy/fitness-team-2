@@ -26,11 +26,11 @@ import CompleteProfile from "./pages/Authentication/CompleteProfile";
 import Notifications from "./pages/Notifications/Notifications";
 import Booking from "./pages/Booking/Booking";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {Toaster} from 'react-hot-toast'
 
 const queryClient = new QueryClient();
 
 function App() {
-
   const routers = createBrowserRouter([
     {path : "" , element : <MainLayout /> , children : [
       {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
@@ -55,13 +55,40 @@ function App() {
   ])
   return (
     <div className="dark">
-     <AuthenticationCntextProvider>
-      <QueryClientProvider client={queryClient}>
-     <RouterProvider router={routers}></RouterProvider>
-     </QueryClientProvider>
-     </AuthenticationCntextProvider>
+      <AuthenticationCntextProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            gutter={8}
+            containerClassName=""
+            containerStyle={{}}
+            toasterId="default"
+            toastOptions={{
+              // Define default options
+              className: "",
+              duration: 5000,
+              removeDelay: 1000,
+              style: {
+                background: "#363636",
+                color: "#fff",
+              },
+
+              // Default options for specific types
+              success: {
+                duration: 3000,
+                iconTheme: {
+                  primary: "green",
+                  secondary: "black",
+                },
+              },
+            }}
+          />
+          <RouterProvider router={routers}></RouterProvider>
+        </QueryClientProvider>
+      </AuthenticationCntextProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

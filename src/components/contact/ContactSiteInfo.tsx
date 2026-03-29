@@ -2,12 +2,12 @@ import { Phone, Mail, Clock } from "lucide-react";
 
 const ContactSiteInfo = () => {
   return (
-    <div className="w-full border border-gray-500 rounded-lg p-4">
+    <div className="w-full border border-gray-500 rounded-lg px-4 py-8">
       <div className="flex flex-col gap-4">
         {contactInfoData.map((item, index) => (
           <div
             key={index}
-            className="flex  items-start gap-4 border border-gray-500 rounded-lg p-4"
+            className="flex  items-start gap-4 border border-gray-500 rounded-lg px-4 py-6"
           >
             {item.icon}
             <div className="flex flex-col items-start gap-2">

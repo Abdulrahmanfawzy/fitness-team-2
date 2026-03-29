@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = "28|DdJp6h0iL2CMdOpZRzUtk7WdMFt3pD9zyT9e9mPL972bf56c";
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
