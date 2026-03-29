@@ -18,7 +18,6 @@ export async function SendSignUp(
   }
 }
 
-
 export async function SendSignIn(
   params: SinInFormData,
 ): Promise<sinInResponse> {
@@ -33,5 +32,37 @@ export async function SendSignIn(
   }
 }
 
+export async function SendForgotPassword(email: string) {
+  try {
+    const { data } = await axiosInstance.post("/api/forgot-password", email);
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+}
 
 
+export async function SendOTP(params: {
+  email: string,
+  code: string
+}) {
+  try {
+    const { data } = await axiosInstance.post("/api/verify-otp", params);
+    return data;
+  }
+  catch (err) {
+    return err.response.data;
+  }
+}
+
+
+export async function  SendResetPassword(params){
+  try {
+    const { data } = await axiosInstance.post("/api/reset-password", params);
+    return data;
+  }
+  catch (err) {
+    return err.response.data;
+  }
+
+}

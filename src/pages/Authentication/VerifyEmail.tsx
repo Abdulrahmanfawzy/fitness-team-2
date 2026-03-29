@@ -1,22 +1,40 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Spinner } from "@/components/ui/spinner";
+import { SendOTP } from "@/lib/Api/Authentication/Authentication";
+import { useOutletContext } from "react-router-dom";
 
 function VerifyEmail() {
+  const { email } = useParams()
   const [otp, setOtp] = useState("");
   const navigate = useNavigate()
+  const [loding, setLoding] = useState(false);
+  const { setalrtEror } = useOutletContext();
 
   async function Verify() {
-    if (otp.length >= 4) {
-      console.log(otp);
-       navigate("/reset-password")
+    if (otp.length >= 6) {
+      let data = {
+        "email": email,
+        "code": otp
+      }
+
+      setLoding(true)
+      const respons = await SendOTP(data);
+      if (respons.status === true) {
+        setLoding(false);
+        navigate(`/reset-password/${data.email}/${data.code}`)
+      } else {
+        setLoding(false);
+        setalrtEror(respons.message);
+      }
+
     }
   }
 
@@ -35,7 +53,7 @@ function VerifyEmail() {
         <InputOTP
           value={otp}
           onChange={(value) => setOtp(value)}
-          maxLength={4}
+          maxLength={6}
           className="mx-auto w-fit gap-3"
         >
           <InputOTPGroup>
@@ -50,12 +68,19 @@ function VerifyEmail() {
           <InputOTPGroup>
             <InputOTPSlot index={3} className="w-11 h-11 text-xl" />
           </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={4} className="w-11 h-11 text-xl" />
+          </InputOTPGroup>
+          <InputOTPGroup>
+            <InputOTPSlot index={5} className="w-11 h-11 text-xl" />
+          </InputOTPGroup>
+
         </InputOTP>
       </div>
-
-      <Button onClick={Verify} className=" w-full bg-orange">
-        Verify
+      <Button disabled={loding} onClick={Verify} className=" w-full bg-orange">
+        {loding ? <Spinner className="size-6" /> : "Verify"}
       </Button>
+
       <h2 className=" mt-1 text-gray-100 text-sm font-semibold">
         Don’t receive the code?{" "}
         <span onClick={Resend} className="text-orange cursor-pointer">
