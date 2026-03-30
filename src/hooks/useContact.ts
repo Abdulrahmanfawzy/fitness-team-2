@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "@/lib/Axios/axiosInstance";
-
+import { toast } from "react-hot-toast";
 type ContactData = {
   name: string;
   email: string;
@@ -15,10 +15,10 @@ const useContact = () => {
       return response.data;
     },
     onSuccess: () => {
-      alert("Message sent successfully");
+      toast.success("Message sent successfully");
     },
     onError: () => {
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     },
   });
 
