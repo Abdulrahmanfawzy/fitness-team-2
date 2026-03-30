@@ -30,13 +30,6 @@ function TrainerCard({ trainer }: TrainerCardProps) {
           <span className="text-white font-medium text-sm">{rating}</span>
         </div>
 
-        {/* Experience Badge */}
-        {experienceYears > 0 && (
-          <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-md flex items-center gap-1.5 border border-white/10">
-            <MdOutlineWorkHistory className="text-orange text-[14px]" />
-            <span className="text-white font-medium text-sm">{experienceYears} yrs</span>
-          </div>
-        )}
 
         <img
           src={imageUrl}
@@ -79,21 +72,10 @@ function TrainerCard({ trainer }: TrainerCardProps) {
 
         {/* Stats Row */}
         <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-1.5">
-            <FaStar className="text-[#FF4D4F] text-[13px]" />
-            <span className="text-white font-semibold text-sm">{rating}</span>
-            <span className="text-gray-500 text-xs">/ 5.0</span>
-          </div>
           {experienceYears > 0 && (
             <div className="flex items-center gap-1.5">
               <MdOutlineWorkHistory className="text-orange text-[15px]" />
               <span className="text-gray-300 text-sm">{experienceYears} years exp.</span>
-            </div>
-          )}
-          {totalReviews > 0 && (
-            <div className="flex items-center gap-1.5">
-              <BiCommentDetail className="text-orange text-[14px]" />
-              <span className="text-gray-300 text-sm">{totalReviews}</span>
             </div>
           )}
         </div>

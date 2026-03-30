@@ -8,24 +8,42 @@ const usePackages = () => {
     queryFn: async () => {
       const response = await axiosInstance.get<{ data: Package[] }>("/api/packages");
       
-      // Handle both flat array and { data: [...] } structure
-      const rawData = response.data.data || response.data;
+      console.log("API response:", response.data);
       
-      if (!Array.isArray(rawData)) {
-        console.error("Unexpected API response format:", response.data);
+      // Handle different response structures
+      let rawData: Package[] = [];
+      
+      if (Array.isArray(response.data)) {
+        rawData = response.data;
+      } else if (response.data && Array.isArray(response.data.data)) {
+        rawData = response.data.data;
+      } else if (response.data && typeof response.data === 'object') {
+        // Try to find an array in the response
+        const possibleArray = Object.values(response.data).find(val => Array.isArray(val));
+        if (possibleArray) rawData = possibleArray as Package[];
+      }
+      
+      console.log("Parsed rawData:", rawData);
+      
+      if (!Array.isArray(rawData) || rawData.length === 0) {
+        console.error("Unexpected API response format or empty data:", response.data);
         return [];
       }
 
-      return rawData.map((pkg: Package): UiPackage => {
+      return rawData.map((pkg: any): UiPackage => {
         const features: string[] = [];
         
-        // Map the boolean features object to a string array for the UI
-        if (pkg.features) {
-          if (pkg.features.progress_tracking) features.push("Progress Tracking");
-          if (pkg.features.nutrition_plan) features.push("Nutrition Plan Included");
-          if (pkg.features.priority_booking) features.push("Priority Scheduling");
-          if (pkg.features.full_access) features.push("Full Session Access");
-        }
+        // Handle features as object or direct booleans on pkg
+        const feat = pkg.features || pkg;
+        
+        // Map the boolean features to string array for the UI
+        // Support both snake_case and camelCase field names
+        if (feat.progress_tracking || feat.progressTracking) features.push("Progress Tracking");
+        if (feat.nutrition_plan || feat.nutritionPlan) features.push("Nutrition Plan Included");
+        if (feat.priority_booking || feat.priorityBooking) features.push("Priority Scheduling");
+        if (feat.full_access || feat.fullAccess) features.push("Full Session Access");
+        
+        console.log("Package:", pkg.title, "Features:", features, "Raw features:", pkg.features);
 
         return {
           id: pkg.id,
