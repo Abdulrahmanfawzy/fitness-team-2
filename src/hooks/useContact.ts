@@ -17,8 +17,8 @@ const useContact = () => {
     onSuccess: () => {
       toast.success("Message sent successfully");
     },
-    onError: () => {
-      toast.error("Something went wrong");
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

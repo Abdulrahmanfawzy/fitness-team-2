@@ -37,7 +37,7 @@ function App() {
       {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
       {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
       {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
-      {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
+      {path : "booking/:packageId" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
       {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
       {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
