@@ -41,19 +41,21 @@ function TrainerCard({ trainer }: TrainerCardProps) {
       {/* Content */}
       <div className="p-6 bg-[#2D2D2D] flex flex-col flex-1">
         {/* Name */}
-        <div className="flex justify-between items-start mb-3">
-          <h4 className="font-bold text-xl text-white tracking-wide leading-tight">{name}</h4>
-          <p className="text-lg">
-            {pricePerSession != null ? (
-              <>
-                <span className="text-[#FF4D4F]">{pricePerSession}</span>
-                <span className="text-white"> /session</span>
-              </>
-            ) : (
-              "-"
-            )}
-          </p>
+        <div className="flex justify-between items-start mb-1">
+          <h4 className="font-bold text-2xl text-white tracking-wide leading-tight">{name}</h4>
         </div>
+
+        {/* Price */}
+        <p className="text-2xl mb-3 text-right">
+          {pricePerSession != null ? (
+            <>
+              <span className="text-[#FF4D4F]">EGP {pricePerSession}</span>
+              <span className="text-white"> /session</span>
+            </>
+          ) : (
+            "-"
+          )}
+        </p>
 
         {/* Specializations */}
         {specializations.length > 0 && (
