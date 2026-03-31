@@ -9,15 +9,14 @@ function ChangePassword() {
     resolver: zodResolver(ChangePasswordSchema),
   });
 
-  async function onSubmit(data) {
-    console.log(data);
-  }
+
   const { data, isLoading } = useQuery({
     queryKey: ["profile-change-password"],
     queryFn: getChangePassword,
   });
-
-
+  async function onSubmit(data) {
+    console.log(data);
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="  px-4 md:px-8 mt-10">
       <h1 className="text-3xl mb-10 font-semibold">Security & Password</h1>
