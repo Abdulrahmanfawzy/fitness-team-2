@@ -32,6 +32,7 @@ const ProfileOverview: React.FC = () => {
   });
 
 
+
   return (
     <div className=" text-white px-4 md:px-8 ">
       <h2 className="text-3xl font-semibold mb-6">
@@ -81,6 +82,7 @@ const ProfileOverview: React.FC = () => {
         ))}
       </div>
     </div >
+
   );
 };
 
