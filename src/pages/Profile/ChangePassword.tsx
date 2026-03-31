@@ -2,16 +2,21 @@ import { ChangePasswordSchema } from "@/lib/schemas/ChangePassword";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-
+import { useQuery } from "@tanstack/react-query";
+import { getChangePassword } from "@/lib/Api/Authentication/profile";
 function ChangePassword() {
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(ChangePasswordSchema),
   });
 
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["profile-change-password"],
+    queryFn: getChangePassword,
+  });
   async function onSubmit(data) {
     console.log(data);
   }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="  px-4 md:px-8 mt-10">
       <h1 className="text-3xl mb-10 font-semibold">Security & Password</h1>
@@ -70,7 +75,7 @@ function ChangePassword() {
         </div>
 
         <button className="bg-[#FF4D4D] mt-4 w-full md:w-1/2 py-3 rounded block mx-auto text-[#FFFFFF] font-semibold text-sm hover:bg-black border border-[#FF4D4D] transition">
-          Update Password
+          Update Password {data?.updatePassword}
         </button>
       </div>
     </form>

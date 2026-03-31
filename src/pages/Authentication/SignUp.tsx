@@ -6,17 +6,43 @@ import GoogleIcone from "./icones/proicons_google.png";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import type { RegisterFormData } from "@/lib/types/Authentication";
+import "../../index.css";
+import { SendSignUp } from "@/lib/Api/Authentication/Authentication";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import { useOutletContext } from "react-router-dom";
 
 function SignUp() {
+  const [loding, setLoding] = useState(false);
+
+  const { setalrtEror } = useOutletContext();
+
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    },
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  async function onSubmit(data) {
-    console.log(data);
-    navigate("/complete-profile")
+  async function onSubmit(data: RegisterFormData) {
+    setLoding(true);
+    const respons = await SendSignUp(data);
+
+    if (respons.status === true) {
+      setLoding(false);
+      localStorage.setItem("token", respons.token);
+      navigate("/complete-profile");
+    } else {
+      setLoding(false);
+      const firstErrorKey = Object.keys(respons.errors)[0];
+      setalrtEror(respons.errors[firstErrorKey][0]);
+    }
   }
 
   return (
@@ -76,9 +102,27 @@ function SignUp() {
           </p>
         )}
       </div>
+
+      <div className=" w-full">
+        <h2 className="text-sm text-gray-300 mb-1">password confirmation</h2>
+        <Input
+          {...register("password_confirmation")}
+          aria-invalid={!!formState.errors.password_confirmation}
+          className=" bg-input border-olive-700 border "
+          id="fieldgroup-email"
+          type="password"
+          placeholder="Enter your password agin "
+        />
+        {formState.errors.password_confirmation?.message && (
+          <p role="alert" className="text-red-500 text-xs mt-1">
+            {formState.errors.password_confirmation?.message}
+          </p>
+        )}
+      </div>
+
       <div className=" w-full my-2 text-center">
-        <Button type="submit" className=" w-full bg-orange">
-          Sign Up
+        <Button disabled={loding} type="submit" className=" w-full bg-orange">
+          {loding ? <Spinner className="size-6" /> : "Sign Up"}
         </Button>
         <h2 className=" mt-1 text-gray-100 text-sm font-semibold">
           Already have an account?{" "}

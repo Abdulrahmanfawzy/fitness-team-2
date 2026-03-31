@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Flame, Package, Clock } from "lucide-react";
-
 import LineChartComponent from "@/pages/Profile/LineChartComponent";
+import { useQuery } from "@tanstack/react-query";
+import { getProgressActivity } from "@/lib/Api/Authentication/profile";
 export default function ProgressActivity() {
   const [stats] = useState({
     streak: 8,
@@ -29,6 +30,11 @@ export default function ProgressActivity() {
   });
 
   if (!stats) return <p>Loading...</p>;
+  const { data, isLoading } = useQuery({
+    queryKey: ["profile-progress-activity"],
+    queryFn: getProgressActivity,
+  });
+
 
   return (
     <div className=" px-4 md:px-8 mt-10 ">

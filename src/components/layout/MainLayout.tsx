@@ -3,8 +3,8 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 
 function MainLayout() {
+  
   return (
-
     <div>
       <div className=" fixed top-0 left-0 right-0 z-100">
         <NavBar />
@@ -14,7 +14,6 @@ function MainLayout() {
         <Outlet />
       </div>
       <Footer />
-
     </div>
   );
 }

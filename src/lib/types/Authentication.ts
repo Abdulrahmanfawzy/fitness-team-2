@@ -1,0 +1,51 @@
+export interface RegisterFormData {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+}
+
+export interface SinInFormData {
+  email: string
+  password: string
+}
+
+
+export interface RegisterResponse {
+  status: boolean;
+  message: string;
+  token: string;
+  user: User;
+}
+
+export interface User {
+  name: string;
+  email: string;
+  phone: any;
+  role: string;
+  updated_at: string;
+  created_at: string;
+  id: number;
+}
+
+
+
+export interface sinInResponse {
+  status: boolean
+  message: string
+  token: string
+  user: UsersinIn
+}
+
+interface UsersinIn {
+  id: number
+  name: string
+  email: string
+  role: string
+  phone: any
+  profile_image: any
+  status: string
+  email_verified_at: any
+  created_at: string
+  updated_at: string
+}
