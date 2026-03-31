@@ -1,6 +1,6 @@
 type PaymentInputProps = {
   id: string;
-  text: string;
+  text: React.ReactNode;
   icon: React.ReactNode;
   selected: boolean;
   onChange: () => void;
@@ -18,7 +18,7 @@ const PaymentButton = ({
   return (
     <label
       htmlFor={id}
-      className={`flex cursor-pointer items-center justify-between rounded-md border px-4 py-3 transition ${
+      className={`flex cursor-pointer items-center justify-between rounded-md border px-6 py-4 transition ${
         selected
           ? "border-red-500 bg-[#111111]"
           : "border-gray-600 bg-transparent hover:border-gray-400"
@@ -30,11 +30,12 @@ const PaymentButton = ({
           type="radio"
           name="payment"
           checked={selected}
-          onChange={onChange}
+          // onChange={onChange}
+          onClick={onChange}
           className="hidden"
         />
         <span>{icon}</span>
-        <span className="text-sm text-gray-200">{text}</span>
+        <span className="text-lg text-gray-200">{text}</span>
       </div>
 
       {rightContent && <div>{rightContent}</div>}

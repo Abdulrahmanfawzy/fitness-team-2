@@ -9,9 +9,9 @@ const Booking = () => {
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   return (
     <section className="bg-gray-950 mt-12">
-      <div className="py-24 px-8 max-w-6xl mx-auto ">
+      <div className="py-24 px-16 max-w-5xl mx-auto ">
         {bookingConfirmed ? (
-          <BookingConfirmed />
+          <BookingConfirmed  />
         ) : (
           <PaymentAndConfirm setBookingConfirmed={setBookingConfirmed} />
         )}
