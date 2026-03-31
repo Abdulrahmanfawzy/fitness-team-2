@@ -33,6 +33,8 @@ const ProfileOverview: React.FC = () => {
 
   console.log(data);
 
+  if (isLoading) return <div className="text-white px-4 md:px-8">Loading...</div>;
+
   return (
     <div className=" text-white px-4 md:px-8 ">
       <h2 className="text-3xl font-semibold mb-6">Profile Overview</h2>

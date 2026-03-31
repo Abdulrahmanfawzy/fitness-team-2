@@ -8,8 +8,17 @@ import {
 } from "react-icons/fa6";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 import { IoSend } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const quickLinks = [
+    { label: "Home", path: "/" },
+    { label: "Our Trainers", path: "/trainers" },
+    { label: "Packages", path: "/packages" },
+    { label: "Book Session", path: "/packages" },
+    { label: "Contact Us", path: "/contact" },
+  ];
+
   return (
     <footer className="bg-gray-950 text-gray-400 px-10 py-14 border-t border-gray-900">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -38,18 +47,14 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            {[
-              "Home",
-              "Our Trainers",
-              "Packages",
-              "Book Session",
-              "Contact Us",
-            ].map((item) => (
-              <li
-                key={item}
-                className="hover:text-white cursor-pointer transition"
-              >
-                {item}
+            {quickLinks.map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.path}
+                  className="hover:text-white transition"
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
