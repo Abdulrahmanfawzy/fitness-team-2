@@ -10,14 +10,14 @@ import toast from "react-hot-toast";
 const PaymentForm = ({
   setBookingConfirmed,
 }: {
-  setBookingConfirmed: (bookingConfirmed: boolean) => void;
+  setBookingConfirmed: (data: any) => void;
 }) => {
+  const [isSimulating, setIsSimulating] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState("card");
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 
   // States for payment details
   const [savedCard, setSavedCard] = useState<CardData | null>(null);
-  const [vodafoneNumber, setVodafoneNumber] = useState("");
 
   const handleSelectPayment = (payment: string) => {
     setSelectedPayment(payment);
@@ -26,14 +26,11 @@ const PaymentForm = ({
     }
   };
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Simulate API submission depending on selected method
     if (selectedPayment === "card") {
-      // it should go to stripe and do the process if the stripe successfully happen add it to the database
-      // and if it failed it should show an error message to till the user with the error
-      setBookingConfirmed(true);
+      handleCardPayment(savedCard, setBookingConfirmed, setIsSimulating);
     } else if (selectedPayment === "vodafone") {
       toast.error(
         "Vodafone Cash is not available at the moment, Please try again later",
@@ -85,7 +82,9 @@ const PaymentForm = ({
         {/* PayPal Details */}
         {selectedPayment === "paypal" && (
           <div className="p-4 bg-[#1A1A1A] rounded-md border border-gray-600 mt-2 mb-4 text-sm text-gray-300 animate-in fade-in slide-in-from-top-2">
-            You will be redirected to PayPal to complete your purchase securely.
+            You will be redirected to{" "}
+            <span className="text-blue-500">PayPal</span> to complete your
+            purchase securely.
           </div>
         )}
 
@@ -99,22 +98,23 @@ const PaymentForm = ({
 
         {/* Vodafone Details */}
         {selectedPayment === "vodafone" && (
-          <div className="p-4 bg-[#1A1A1A] rounded-md border border-gray-600 mt-2 mb-4 animate-in fade-in slide-in-from-top-2">
-            <input
-              type="tel"
-              placeholder="Vodafone Cash Mobile Number"
-              className="w-full bg-transparent border border-gray-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-orange"
-              required
-              value={vodafoneNumber}
-              onChange={(e) => setVodafoneNumber(e.target.value)}
-            />
+          <div className="p-4 bg-[#1A1A1A] rounded-md border border-gray-600 mt-2 mb-4 text-sm text-gray-300 animate-in fade-in slide-in-from-top-2">
+            You will be redirected to{" "}
+            <span className="text-orange">Vodafone Cash</span> to complete your
+            purchase securely.
           </div>
         )}
 
-        <button className="w-full rounded bg-orange py-2 text-white cursor-pointer hover:scale-102 transition-scale duration-300 mt-4 font-bold">
-          {selectedPayment === "paypal"
-            ? "Continue with PayPal"
-            : "Booking Now"}
+        <button
+          type="submit"
+          disabled={isSimulating}
+          className="w-full rounded bg-orange py-2 text-white cursor-pointer hover:scale-102 transition-scale duration-300 mt-4 font-bold disabled:opacity-50"
+        >
+          {isSimulating
+            ? "Processing..."
+            : selectedPayment === "paypal"
+              ? "Continue with PayPal"
+              : "Booking Now"}
         </button>
       </form>
 
@@ -130,5 +130,36 @@ const PaymentForm = ({
     </>
   );
 };
+
+
+/**
+ * Handle the process of booking with the card payment 
+ * @param savedCard 
+ * @param setBookingConfirmed 
+ * @param setIsSimulating 
+ * @returns 
+ */
+function handleCardPayment(
+  savedCard: CardData | null,
+  setBookingConfirmed: (data: any) => void,
+  setIsSimulating: (data: boolean) => void,
+) {
+  if (!savedCard) {
+    toast.error("Please add a card");
+    return;
+  }
+
+  setIsSimulating(true);
+  setTimeout(() => {
+    setIsSimulating(false);
+    setBookingConfirmed({
+      trainerName: "John Doe",
+      packageTitle: "Package Title",
+      date: "2022-01-01",
+      time: "12:00 PM",
+      booking_id: "123456789",
+    });
+  }, 3000);
+}
 
 export default PaymentForm;

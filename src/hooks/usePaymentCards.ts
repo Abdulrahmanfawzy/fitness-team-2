@@ -14,7 +14,6 @@ const usePaymentCards = () => {
   const queryClient = useQueryClient();
   const { mutate, isPending, isSuccess, isError, error } = useMutation({
     mutationFn: async (data: CardData) => {
-      console.log("data from the mutate", data);
       const response = await axiosInstance.post("/api/cards", data);
       return response.data;
     },

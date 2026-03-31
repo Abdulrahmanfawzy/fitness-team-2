@@ -6,12 +6,13 @@ import { useParams } from "react-router-dom";
 const Booking = () => {
   const { packageId } = useParams();
   console.log(packageId);
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+
+  const [bookingConfirmed, setBookingConfirmed] = useState<any>(null);
   return (
     <section className="bg-gray-950 mt-12">
       <div className="py-24 px-16 max-w-5xl mx-auto ">
         {bookingConfirmed ? (
-          <BookingConfirmed  />
+          <BookingConfirmed details={{ ...bookingConfirmed }} />
         ) : (
           <PaymentAndConfirm setBookingConfirmed={setBookingConfirmed} />
         )}
