@@ -5,16 +5,31 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SendForgotPassword } from "@/lib/Api/Authentication/Authentication";
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import { Spinner } from "@/components/ui/spinner";
 
 function ForgotPassword() {
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(ForgotPasswordSchema),
   });
-
+  const [loding, setLoding] = useState(false);
   const navigate = useNavigate()
+  const { setalrtEror } = useOutletContext();
 
-  async function onSubmit() {
-    navigate("/verify")
+  async function onSubmit(data) {
+    setLoding(true);
+    const respons = await SendForgotPassword(data);
+    if (respons.status === true) {
+      setLoding(false);
+      navigate(`/verify/${data.email}`)
+    } else {
+      setLoding(false);
+      const firstErrorKey = Object.keys(respons.error)[0];
+      setalrtEror(respons.error[firstErrorKey][0]);
+    }
+
   }
 
   return (
@@ -46,9 +61,10 @@ function ForgotPassword() {
       </div>
 
       <div className=" w-full my-2 text-center">
-        <Button type="submit" className=" w-full bg-orange">
-          send
+        <Button disabled={loding} type="submit" className=" w-full bg-orange">
+          {loding ? <Spinner className="size-6" /> : "send"}
         </Button>
+
       </div>
 
       <Link

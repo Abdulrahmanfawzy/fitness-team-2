@@ -33,6 +33,8 @@ const ProfileHeader: React.FC = () => {
     queryFn: getProfileHeader,
   });
 
+  console.log(data)
+
 
     return (
         <div className="w-full  text-white p-4 md:p-8">
