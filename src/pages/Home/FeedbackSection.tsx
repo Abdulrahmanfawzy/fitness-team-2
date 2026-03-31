@@ -12,7 +12,7 @@ function FeedbackSection() {
           Proven Results,{" "}
           <span className=" text-orange mt-2">Trusted Voices</span>
         </h2>
-        <Review />
+        <Review reviews={[]} />
       </div>
     </div>
   );

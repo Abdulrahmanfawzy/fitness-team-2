@@ -6,36 +6,54 @@ const usePackages = () => {
   const { data: packages, isLoading: loading, error } = useQuery({
     queryKey: ["packages"],
     queryFn: async () => {
-      const response = await axiosInstance.get<{ data: Package[] }>("/api/packages");
+      const response = await axiosInstance.get<{ data: Package[] }>("api/landing/packages");
       
-      // Handle both flat array and { data: [...] } structure
-      const rawData = response.data.data || response.data;
+      console.log("API response:", response.data);
       
-      if (!Array.isArray(rawData)) {
-        console.error("Unexpected API response format:", response.data);
+      // Handle different response structures
+      let rawData: Package[] = [];
+      
+      if (Array.isArray(response.data)) {
+        rawData = response.data;
+      } else if (response.data && Array.isArray(response.data.data)) {
+        rawData = response.data.data;
+      } else if (response.data && typeof response.data === 'object') {
+        // Try to find an array in the response
+        const possibleArray = Object.values(response.data).find(val => Array.isArray(val));
+        if (possibleArray) rawData = possibleArray as Package[];
+      }
+      
+      console.log("Parsed rawData:", rawData);
+      
+      if (!Array.isArray(rawData) || rawData.length === 0) {
+        console.error("Unexpected API response format or empty data:", response.data);
         return [];
       }
 
-      return rawData.map((pkg: Package): UiPackage => {
-        const features: string[] = [];
+      return rawData.map((pkg: any): UiPackage => {
+        // Handle features as string array from API
+        const rawFeatures: string[] = pkg.features || [];
+        const features: string[] = rawFeatures.map((feat: string) => {
+          switch (feat) {
+            case "progress_tracking": return "Progress Tracking";
+            case "nutrition_plan": return "Nutrition Plan Included";
+            case "priority_booking": return "Priority Scheduling";
+            case "full_access": return "Full Session Access";
+            default: return feat.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+          }
+        });
         
-        // Map the boolean features object to a string array for the UI
-        if (pkg.features) {
-          if (pkg.features.progress_tracking) features.push("Progress Tracking");
-          if (pkg.features.nutrition_plan) features.push("Nutrition Plan Included");
-          if (pkg.features.priority_booking) features.push("Priority Scheduling");
-          if (pkg.features.full_access) features.push("Full Session Access");
-        }
+        console.log("Package:", pkg.title, "Features:", features, "Raw features:", pkg.features);
 
         return {
           id: pkg.id,
           title: pkg.title || "Package",
-          price: "",
+          price: pkg.price ? `$${pkg.price}` : "",
           duration: pkg.duration_days ? `${pkg.duration_days} DAYS` : "60 MIN",
           sessions: pkg.sessions ? `${pkg.sessions} ${Number(pkg.sessions) === 1 ? 'SESSION' : 'SESSIONS'}` : "0 SESSIONS",
           description: pkg.description || "",
           features: features.length > 0 ? features : ["Basic Features"],
-          isRecommended: !!pkg.is_recommended || (pkg.title || "").toLowerCase().includes("monthly"),
+          isRecommended: !!pkg.is_recommended,
         };
       });
     },

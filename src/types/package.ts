@@ -10,9 +10,10 @@ export type Package = {
   id: number;
   title: string;
   description: string;
+  price: number;
   sessions: number;
   duration_days: number;
-  features: PackageFeatures;
+  features: string[];
   is_recommended?: boolean;
 };
 

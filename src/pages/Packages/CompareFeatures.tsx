@@ -31,7 +31,7 @@ function CompareFeatures() {
     
     if (featureKey === "price") return pkg.price;
     if (featureKey === "sessions") return pkg.sessions.split(' ')[0];
-    if (featureKey === "duration") return pkg.duration.split(' ')[0];
+    if (featureKey === "duration") return pkg.duration;
     if (featureKey === "trainer") return pkg.title.toLowerCase().includes("single") ? "Any" : "Dedicated";
     
     // Check if it's a boolean feature in the string array

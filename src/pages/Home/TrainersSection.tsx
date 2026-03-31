@@ -1,9 +1,26 @@
 import TrainerCard from "@/components/common/TrainerCard";
 import { Link } from "react-router-dom";
 import useTrainers from "@/hooks/useTrainers";
+import { useState } from "react";
 
 function TrainersSection() {
   const { trainers, loading, error } = useTrainers();
+  const [currentPage, setCurrentPage] = useState(0);
+  const cardsPerPage = 3;
+
+  const totalPages = Math.ceil(trainers.length / cardsPerPage);
+  const visibleTrainers = trainers.slice(
+    currentPage * cardsPerPage,
+    (currentPage + 1) * cardsPerPage
+  );
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+  };
 
   return (
     <div className="my-24 w-[95%] md:w-[85%] mx-auto px-5">
@@ -20,12 +37,13 @@ function TrainersSection() {
         <div className="flex flex-col md:flex-row items-center gap-3">
           <div className="flex items-center gap-2">
             <svg
+              onClick={handlePrev}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
+              className={`flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm ${currentPage === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <path
                 strokeLinecap="round"
@@ -35,12 +53,13 @@ function TrainersSection() {
             </svg>
 
             <svg
+              onClick={handleNext}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm"
+              className={`flex items-center w-7 h-7 cursor-pointer border border-white rounded-sm ${currentPage >= totalPages - 1 ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <path
                 strokeLinecap="round"
@@ -87,8 +106,8 @@ function TrainersSection() {
       {/* Trainers Grid */}
       {!loading && !error && (
         <div className="mt-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-          {trainers.length > 0 ? (
-            trainers.map((trainer) => (
+          {visibleTrainers.length > 0 ? (
+            visibleTrainers.map((trainer) => (
               <TrainerCard key={trainer.id} trainer={trainer} />
             ))
           ) : (

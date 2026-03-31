@@ -2,7 +2,7 @@ import { Skeleton } from "../ui/skeleton";
 
 const Loading = () => {
   return (
-    <section className="max-w-7xl mx-auto section-padding py-10 space-y-12">
+    <section className="max-w-7xl mx-auto section-padding py-10 px-8 space-y-12">
       <Skeleton className="h-8 w-48 mx-auto" />
       <div className="bg-card border border-border rounded-lg p-4 md:p-6 flex flex-col md:flex-row gap-6">
         <Skeleton className="w-full md:w-64 h-64 rounded-lg" />

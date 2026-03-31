@@ -31,9 +31,14 @@ export function useBookSchedule() {
     onSuccess: () => {
       successToast("Booked Successfully");
     },
-    onError: (error: AxiosError<string>) => {
-      const message = error.response?.data?.message || "Failed to book schedule";
+    onError: (error: AxiosError<ErrorResponse>) => {
+      const message =
+        error.response?.data?.message || "Failed to book schedule";
       errorToast(message);
     },
   });
 }
+
+type ErrorResponse = {
+  message?: string;
+};

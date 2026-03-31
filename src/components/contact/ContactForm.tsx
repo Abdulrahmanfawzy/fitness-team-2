@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ContactFormSchema,
   type ContactFormType,
-} from "@/lib/schemas/ContactForm";
+} from "@/lib/schemas/ContactFormSchema";
 import useContact from "@/hooks/useContact";
 
 const ContactForm = () => {

@@ -16,6 +16,7 @@ import Packages from "./pages/Packages/Packages";
 import Home from "./pages/Home/Home";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import Trainers from "./pages/Trainers/Trainers";
+import Classes from "./pages/Classes/Classes";
 import Contact from "./pages/Contact/Contact";
 import UserProfile from "./pages/Profile/Profile";
 import TrainerProfile from "./pages/TrainerProfile/TrainerProfile";
@@ -36,11 +37,12 @@ function App() {
       {index : true , element : <AppProtectedRoute> <Home/> </AppProtectedRoute> } , 
       {path : "packages" , element : <AppProtectedRoute> <Packages/> </AppProtectedRoute> } ,
       {path : "trainers" , element : <AppProtectedRoute> <Trainers/> </AppProtectedRoute> } ,
+      {path : "classes" , element : <AppProtectedRoute> <Classes/> </AppProtectedRoute> } ,
       {path : "contact" , element : <AppProtectedRoute> <Contact/> </AppProtectedRoute> } ,
-      {path : "booking" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
+      {path : "booking/:packageId" , element : <AppProtectedRoute> <Booking/> </AppProtectedRoute> } ,
       {path : "profile" , element : <AppProtectedRoute> <UserProfile/> </AppProtectedRoute> } ,
       {path : "notifications" , element : <AppProtectedRoute> <Notifications/> </AppProtectedRoute> } ,
-      {path : "trainer-Profile/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
+      {path : "trainers/:id" , element : <AppProtectedRoute> <TrainerProfile/> </AppProtectedRoute> } ,
       {path : "complete-profile" , element : <AppProtectedRoute><CompleteProfile/></AppProtectedRoute> } ,
       {path : "*" , element : <AppProtectedRoute><NotFoundPage /></AppProtectedRoute> }
     ]} ,
