@@ -4,7 +4,8 @@ import { FaPaypal } from "react-icons/fa";
 import { SiVodafone } from "react-icons/si";
 import PaymentButton from "./PaymentButton";
 import AddCardDialog from "./AddCardDialog";
-import type { CardData } from "@/hooks/useAddCard";
+import type { CardData } from "@/hooks/usePaymentCards";
+import toast from "react-hot-toast";
 
 const PaymentForm = ({
   setBookingConfirmed,
@@ -29,17 +30,21 @@ const PaymentForm = ({
     e.preventDefault();
 
     // Simulate API submission depending on selected method
-    console.log("Processing payment with method:", selectedPayment);
     if (selectedPayment === "card") {
-      console.log("Card Details:", savedCard);
+      // it should go to stripe and do the process if the stripe successfully happen add it to the database
+      // and if it failed it should show an error message to till the user with the error
+      setBookingConfirmed(true);
     } else if (selectedPayment === "vodafone") {
-      console.log("Vodafone Cash Number:", vodafoneNumber);
+      toast.error(
+        "Vodafone Cash is not available at the moment, Please try again later",
+      );
     } else if (selectedPayment === "paypal") {
-      console.log("Redirecting to PayPal...");
+      toast.error(
+        "PayPal is not available at the moment, Please try again later",
+      );
+    } else {
+      toast.error("Payment Failed, Please try again later");
     }
-
-    // After successful payment handling:
-    setBookingConfirmed(true);
   };
 
   return (
@@ -48,8 +53,8 @@ const PaymentForm = ({
         <PaymentButton
           id="card"
           text={
-            savedCard?.cardNumber
-              ? `Card ending in ${savedCard.cardNumber.slice(-4) || "****"}`
+            savedCard
+              ? `**** **** **** ${savedCard.card_last_four || "****"}`
               : "add new card"
           }
           icon={<MdOutlineAddCard className="text-gray-400" size={18} />}
@@ -72,7 +77,7 @@ const PaymentForm = ({
         <PaymentButton
           id="paypal"
           text="Paypal"
-          icon={<FaPaypal className="text-blue-500" size={18} />}
+          icon={<FaPaypal className="text-blue-500" size={24} />}
           selected={selectedPayment === "paypal"}
           onChange={() => handleSelectPayment("paypal")}
         />
@@ -117,7 +122,10 @@ const PaymentForm = ({
       <AddCardDialog
         isCardModalOpen={isCardModalOpen}
         setIsCardModalOpen={setIsCardModalOpen}
-        onCardAdded={(card) => setSavedCard(card)}
+        onCardAdded={(card) => {
+          setSavedCard(card);
+          setSelectedPayment("card");
+        }}
       />
     </>
   );
