@@ -1,8 +1,22 @@
 import TrainerCard from "../../../components/common/TrainerCard";
 import useTrainers from "@/hooks/useTrainers";
 
-function TrainersList() {
+interface TrainersListProps {
+  searchQuery: string;
+}
+
+function TrainersList({ searchQuery }: TrainersListProps) {
   const { trainers, loading, error } = useTrainers();
+
+  const filteredTrainers = searchQuery
+    ? trainers.filter(
+        (trainer) =>
+          trainer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          trainer.specializations.some((spec) =>
+            spec.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+      )
+    : trainers;
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12">
@@ -38,12 +52,12 @@ function TrainersList() {
       {/* Trainers Grid */}
       {!loading && !error && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {trainers.length > 0 ? (
-            trainers.map((trainer) => (
+          {filteredTrainers.length > 0 ? (
+            filteredTrainers.map((trainer) => (
               <TrainerCard key={trainer.id} trainer={trainer} />
             ))
           ) : (
-            /* Fallback to static cards if API returns empty */
+            /* Fallback to static cards if no results */
             <>
               <TrainerCard />
               <TrainerCard />
