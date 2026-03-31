@@ -27,14 +27,21 @@ function Login() {
 
   async function onSubmit(data: SinInFormData) {
     setLoding(true);
-    console.log(data);
+
     const respons = await SendSignIn(data);
 
     if (respons.status === true) {
       setLoding(false);
-      setIsLogedIn(respons.token);
+        console.log(respons);
       localStorage.setItem("token", respons.token);
-      navigate("/");
+      if (respons.is_complete_the_profile === 1) {
+        navigate("/");
+      } else {
+        navigate("/complete-profile");
+      }
+
+      setIsLogedIn(respons.token);
+
     } else {
       setLoding(false);
       setalrtEror(respons.message);
