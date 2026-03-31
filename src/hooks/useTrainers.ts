@@ -11,7 +11,7 @@ const useTrainers = () => {
     queryKey: ["landing-trainers"],
     queryFn: async () => {
       const response = await axiosInstance.get<{ data: Trainer[] } | Trainer[]>(
-        "api/landing/trainers"
+        "api/trainers"
       );
 
       // Handle both flat array and { data: [...] } structure
@@ -22,6 +22,9 @@ const useTrainers = () => {
         console.error("Unexpected API response format:", response.data);
         return [];
       }
+
+      console.log("Trainers API response:", rawData);
+      console.log("First trainer price_per_session:", rawData[0]?.price_per_session);
 
       return rawData as Trainer[];
     },

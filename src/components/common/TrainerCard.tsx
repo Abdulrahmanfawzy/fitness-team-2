@@ -1,7 +1,5 @@
 import { FaStar, FaArrowRight } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineWorkHistory } from "react-icons/md";
-import { BiCommentDetail } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import type { Trainer } from "@/types/trainer";
 import imageTrainer from "../../../public/c4925f322ee533b6cd71573448267f2829ac0fda (4).png";
@@ -11,14 +9,13 @@ type TrainerCardProps = {
 };
 
 function TrainerCard({ trainer }: TrainerCardProps) {
-  const name = trainer?.user?.name ?? "Ahmed Hassan";
-  const imageUrl = trainer?.user?.profile_image ?? imageTrainer;
+  const name = trainer?.name ?? "Ahmed Hassan";
+  const imageUrl = trainer?.profile_image ?? imageTrainer;
   const rating = trainer?.rating ?? "4.9";
-  const totalReviews = trainer?.total_reviews ?? 0;
-  const experienceYears = trainer?.experience_years ?? 0;
   const location = trainer?.location ?? "Nasr City, Cairo";
-  const bio = trainer?.bio ?? "";
+  const specializations = trainer?.specializations ?? [];
   const trainerId = trainer?.id;
+  const pricePerSession = trainer?.price_per_session;
 
   return (
     <div className="rounded-2xl overflow-hidden bg-[#2C2C2E] text-white shadow-lg mx-auto font-sans w-full flex flex-col">
@@ -43,22 +40,33 @@ function TrainerCard({ trainer }: TrainerCardProps) {
 
       {/* Content */}
       <div className="p-6 bg-[#2D2D2D] flex flex-col flex-1">
-        {/* Name & Reviews */}
+        {/* Name */}
         <div className="flex justify-between items-start mb-3">
           <h4 className="font-bold text-xl text-white tracking-wide leading-tight">{name}</h4>
-          {totalReviews > 0 && (
-            <div className="flex items-center gap-1 text-gray-400 text-sm shrink-0 ml-2">
-              <BiCommentDetail className="text-orange" />
-              <span>{totalReviews} reviews</span>
-            </div>
-          )}
+          <p className="text-lg">
+            {pricePerSession != null ? (
+              <>
+                <span className="text-[#FF4D4F]">{pricePerSession}</span>
+                <span className="text-white"> /session</span>
+              </>
+            ) : (
+              "-"
+            )}
+          </p>
         </div>
 
-        {/* Bio */}
-        {bio && (
-          <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
-            {bio}
-          </p>
+        {/* Specializations */}
+        {specializations.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {specializations.map((spec) => (
+              <span
+                key={spec}
+                className="px-2 py-1 bg-white/20 text-white text-xs rounded-md font-medium"
+              >
+                {spec}
+              </span>
+            ))}
+          </div>
         )}
 
         {/* Location */}
@@ -69,16 +77,6 @@ function TrainerCard({ trainer }: TrainerCardProps) {
 
         {/* Divider */}
         <div className="border-t border-white/10 mb-4" />
-
-        {/* Stats Row */}
-        <div className="flex items-center justify-between mb-5">
-          {experienceYears > 0 && (
-            <div className="flex items-center gap-1.5">
-              <MdOutlineWorkHistory className="text-orange text-[15px]" />
-              <span className="text-gray-300 text-sm">{experienceYears} years exp.</span>
-            </div>
-          )}
-        </div>
 
         {/* Button */}
         <div className="mt-auto">
