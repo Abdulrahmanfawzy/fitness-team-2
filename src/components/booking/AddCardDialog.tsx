@@ -76,7 +76,7 @@ const AddCardDialog = ({
                 <AddCardInput
                   id="cvv"
                   type="text"
-                  placeholder="CCV: 123"
+                  placeholder="Cvv: 123"
                   register={register("cvv")}
                   error={
                     errors.cvv?.message || error?.response?.data?.errors?.cvv
