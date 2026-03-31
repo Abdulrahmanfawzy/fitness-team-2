@@ -5,7 +5,12 @@ import { useState } from "react";
 import FilterPanel from "./FilterPanel";
 import SortPanel from "./SortPanel";
 
-function TrainersSearch() {
+interface TrainersSearchProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+}
+
+function TrainersSearch({ searchQuery, setSearchQuery }: TrainersSearchProps) {
   const [filter, setFilter] = useState(false);
   const [sort, setSort] = useState(false);
 
@@ -19,6 +24,8 @@ function TrainersSearch() {
           <input
             type="text"
             placeholder="Search by name or specialty"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="bg-transparent border-none outline-none text-white w-full placeholder-gray-400 text-[16px]"
           />
         </div>

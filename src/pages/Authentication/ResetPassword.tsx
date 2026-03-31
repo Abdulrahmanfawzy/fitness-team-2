@@ -4,17 +4,41 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { SendResetPassword } from "@/lib/Api/Authentication/Authentication";
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import { Spinner } from "@/components/ui/spinner";
 
 function ResetPassword() {
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(ResetPasswordSchema),
   });
-
   const navigate = useNavigate()
+  const [loding, setLoding] = useState(false);
+  const { setalrtEror } = useOutletContext();
+  const { email, code } = useParams()
 
   async function onSubmit(data) {
-    console.log(data);
-    navigate("/complete-profile")
+    let prams = {
+      email: email,
+      code: code,
+      password: data.password,
+      password_confirmation: data.password_confirmation
+    }
+    setLoding(true)
+    const respons = await SendResetPassword(prams);
+    if (respons.status === true) {
+      setLoding(false);
+      navigate("/login")
+      
+    } else {
+      setLoding(false);
+      setalrtEror(respons.message);
+    }
+
+
+    // navigate("/complete-profile")
   }
   return (
     <form
@@ -42,22 +66,21 @@ function ResetPassword() {
       <div className=" w-full">
         <h2 className="text-sm text-gray-300 mb-1">Re-enter Password</h2>
         <Input
-          {...register("rePassword")}
-          aria-invalid={!!formState.errors.rePassword}
+          {...register("password_confirmation")}
+          aria-invalid={!!formState.errors.password_confirmation}
           className=" bg-input border-olive-700 border "
           id="fieldgroup-email"
           type="password"
           placeholder="Re-enter your New Password"
         />
-        {formState.errors.rePassword?.message && (
+        {formState.errors.password_confirmation?.message && (
           <p role="alert" className="text-red-500 text-xs mt-1">
-            {formState.errors.rePassword?.message}
+            {formState.errors.password_confirmation?.message}
           </p>
         )}
       </div>
-
-      <Button  type="submit" className=" w-full bg-orange mt-2">
-        Reset
+      <Button disabled={loding} type="submit"  className=" w-full bg-orange">
+        {loding ? <Spinner className="size-6" /> : "Reset"}
       </Button>
     </form>
   );

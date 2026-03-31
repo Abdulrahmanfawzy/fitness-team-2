@@ -12,7 +12,7 @@ function WhyEliteSyncSection() {
           Why EliteSync
         </p>
         <h2 className=" text-white text-4xl md:text-5xl font-extrabold ">
-          The Platform Built for {" "}
+          The Platform Built for{" "}
           <span className=" text-orange mt-2">Serious Results</span>
         </h2>
         <p className=" text-text-secondary text-[16px] sm:text-[18px] ">

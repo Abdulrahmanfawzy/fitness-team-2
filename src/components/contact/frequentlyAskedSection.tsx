@@ -34,8 +34,8 @@ const frequentlyAskedData = [
 
 const FrequentlyAskedSection = () => {
   return (
-    <section className="flex flex-col gap-4 items-stretch w-full">
-      <h2 className="text-xl font-bold text-center text-[#A7A7A7]">
+    <section className="flex flex-col gap-8 items-stretch w-full">
+      <h2 className="text-2xl font-bold text-center text-[#A7A7A7]">
         Frequently Asked
       </h2>
       <Accordion
@@ -46,10 +46,10 @@ const FrequentlyAskedSection = () => {
       >
         {frequentlyAskedData.map((item) => (
           <AccordionItem key={item.id} value={item.id.toString()}>
-            <AccordionTrigger className="text-xs sm:text-sm font-light px-4 text-[#9CA3AF] hover:text-orange hover:no-underline cursor-pointer">
+            <AccordionTrigger className="text-md  md:text-xl  font-light px-4 text-[#9CA3AF] hover:text-orange hover:no-underline cursor-pointer">
               {item.question.toUpperCase()}
             </AccordionTrigger>
-            <AccordionContent className="px-4 text-xs sm:text-sm text-gray-300">
+            <AccordionContent className="px-4 text-md  md:text-lg text-gray-300">
               {item.answer}
             </AccordionContent>
           </AccordionItem>

@@ -8,18 +8,37 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/lib/schemas/loginValidation";
 import { useNavigate } from "react-router-dom";
+import { SendSignIn } from "@/lib/Api/Authentication/Authentication";
+import type { SinInFormData } from "@/lib/types/Authentication";
+import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import { useContext } from "react";
+import AuthenticationCntext from "@/lib/Cntext/AuthenticationCntext";
 
 function Login() {
   const { register, handleSubmit, formState } = useForm({
     resolver: zodResolver(loginSchema),
   });
+  const { setalrtEror } = useOutletContext();
+  const navigate = useNavigate();
+  const [loding, setLoding] = useState(false);
+  let { setIsLogedIn } = useContext(AuthenticationCntext);
 
-  const navigate = useNavigate()
-
-  async function onSubmit(data) {
+  async function onSubmit(data: SinInFormData) {
+    setLoding(true);
     console.log(data);
-    navigate("/complete-profile")
+    const respons = await SendSignIn(data);
 
+    if (respons.status === true) {
+      setLoding(false);
+      setIsLogedIn(respons.token);
+      localStorage.setItem("token", respons.token);
+      navigate("/");
+    } else {
+      setLoding(false);
+      setalrtEror(respons.message);
+    }
   }
 
   return (
@@ -77,9 +96,16 @@ function Login() {
         Forgot Password
       </Link>
       <div className=" w-full my-2 text-center">
-        <Button type="submit" className=" w-full bg-orange">
-          Login <img src={rightIcone} alt="" />
+        <Button disabled={loding} type="submit" className=" w-full bg-orange">
+          {loding ? (
+            <Spinner className="size-6" />
+          ) : (
+            <>
+              Login <img src={rightIcone} alt="" />
+            </>
+          )}
         </Button>
+
         <h2 className=" mt-1 text-gray-100 text-sm font-semibold">
           Don’t have an account?{" "}
           <Link to={"/sign-up"} className="text-orange">
@@ -92,7 +118,7 @@ function Login() {
         <p className="w-fit">Or Login with</p>
         <span className=" border-b border-olive-700 grow"></span>
       </div>
-      <Button className=" w-full bg-input">
+      <Button type="button" className=" w-full bg-input">
         <img src={GoogleIcone} alt="" />
       </Button>
     </form>
