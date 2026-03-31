@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Profile from "@/assets/Profile.jpg";
+// import Profile from "@/assets/Profile.jpg";
 import { Goal, Dumbbell, type LucideIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProfileOverview } from "@/lib/Api/Authentication/profile";
@@ -38,15 +38,15 @@ const { data, isLoading } = useQuery({
             </h2>
             <div className="flex flex-col md:flex-row gap-6 mb-6">
                 <img
-                    src={Profile}
+                    src={data?.uploadimage}
                     className="w-32 md:w-40  rounded-full" />
                 <div className="flex flex-col items-start gap-2">
                     <div className="flex gap-3">
                         <button className="bg-[#FF4D4D] px-9 py-2.5 rounded-md tracking-tight text-xs font-bold hover:bg-black border border-[#FF4D4D] transition">
-                            Upload New {data?.uploadType}
+                            Upload New {data?.uploadimage}
                         </button>
                         <button className="border border-[#FF4D4D] px-9 py-2.5 rounded-md text-xs font-bold hover:bg-[#FF4D4D] transition">
-                            Remove {data?.removeType}
+                            Remove {data?.removeimage}
                         </button>
                     </div>
                     <p className=" text-[#A7A7A7] text-xs">

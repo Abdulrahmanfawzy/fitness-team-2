@@ -28,7 +28,7 @@ export default function UpcomingSessions() {
         { icon: Clock, title: "9:00 AM - 10:00 AM" },
         { icon: MapPin, title: "Downtown Gym" },
     ]);
-const { data, isLoading } = useQuery({
+const { data } = useQuery({
     queryKey: ["profile-upcoming-sessions"],
     queryFn: getUpcomingSessions,
   });
@@ -41,7 +41,7 @@ const { data, isLoading } = useQuery({
                     View Past Sessions
                 </span>
             </div>
-            {sessions.map((s) => (
+            {sessions.map((s: any) => (
                 <div
                     key={s.id}
                     className="flex justify-between items-center border border-[#A7A7A7] p-4 rounded-2xl">

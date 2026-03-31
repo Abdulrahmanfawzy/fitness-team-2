@@ -39,7 +39,7 @@ const ProfileHeader: React.FC = () => {
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
                 <div className="flex items-center gap-4">
                     <img
-                        src={data?.avatar}
+                        src={data?.image}
                         className="w-20 h-20 rounded-full" />
                     <div>
                         <h2 className="text-3xl tracking-wide font-bold">
@@ -51,7 +51,7 @@ const ProfileHeader: React.FC = () => {
                     </div>
                 </div>
                 <button className="border border-[#FF4D4D] px-4 md:px-10 py-3 bg-[#121212] rounded-md text-sm hover:bg-red-500 transition">
-                    Edit profile
+                    Edit profile {data?.editProfile}
                 </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
