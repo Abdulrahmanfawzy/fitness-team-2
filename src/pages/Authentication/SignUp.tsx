@@ -36,8 +36,7 @@ function SignUp() {
 
     if (respons.status === true) {
       setLoding(false);
-      localStorage.setItem("token", respons.token);
-      navigate("/complete-profile");
+      navigate(`/verify/${data.email}/login`)
     } else {
       setLoding(false);
       const firstErrorKey = Object.keys(respons.errors)[0];

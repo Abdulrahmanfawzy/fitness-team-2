@@ -28,6 +28,7 @@ function ResetPassword() {
     }
     setLoding(true)
     const respons = await SendResetPassword(prams);
+    console.log(respons)
     if (respons.status === true) {
       setLoding(false);
       navigate("/login")

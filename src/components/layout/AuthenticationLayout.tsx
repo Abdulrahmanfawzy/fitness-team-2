@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import gymbackground from "../../../public/gymbackground.png";
 import "../../index.css";
 import { useState } from "react";
-import { AlertCoponant } from "@/pages/Authentication/Alart";
+import { AlertCoponant } from "@/components/common/Alart";
 import { useEffect } from "react";
 
 function AuthenticationLayout() {
@@ -23,7 +23,7 @@ function AuthenticationLayout() {
       style={{ backgroundImage: `url(${gymbackground})` }}
       className="relative w-full flex-col overflow-hidden overflow-x-hidden py-5 min-h-screen flex items-center justify-center bg-center bg-cover before:absolute before:inset-0 before:bg-black/50"
     >
-      {alrtEror && <AlertCoponant text={alrtEror} />}
+      {alrtEror && <AlertCoponant isEror={true} title="Authentication Error" text={alrtEror} />}
       <Outlet context={{ setalrtEror }} />
     </div>
   );

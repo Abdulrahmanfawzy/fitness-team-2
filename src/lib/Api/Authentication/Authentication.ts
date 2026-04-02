@@ -66,3 +66,18 @@ export async function  SendResetPassword(params){
   }
 
 }
+
+
+export async function  SendCompleteProfile(params){
+  try {
+    const { data } = await axiosInstance.post("/api/profile/fitness-profile", params);
+    return data;
+  }
+  catch (err) {
+    return err.response.data;
+  }
+
+}
+
+
+

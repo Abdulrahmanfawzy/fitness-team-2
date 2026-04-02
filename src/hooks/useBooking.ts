@@ -16,7 +16,7 @@ const useBooking = () => {
   const [error, setError] = useState<string | null>(null);
 
   const createBooking = async (
-    payload: BookingPayload
+    payload: BookingPayload,
   ): Promise<BookingResponse | null> => {
     setLoading(true);
     setError(null);

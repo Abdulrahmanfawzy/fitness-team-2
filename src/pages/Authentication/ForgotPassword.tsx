@@ -23,15 +23,13 @@ function ForgotPassword() {
     const respons = await SendForgotPassword(data);
     if (respons.status === true) {
       setLoding(false);
-      navigate(`/verify/${data.email}`)
+      navigate(`/verify/${data.email}/resetPassword`)
     } else {
       setLoding(false);
       const firstErrorKey = Object.keys(respons.error)[0];
       setalrtEror(respons.error[firstErrorKey][0]);
     }
-
   }
-
   return (
     <form
       className=" px-5 py-7 z-10 text-white  border border-orange rounded-2xl w-[95%] md:w-[55%] lg:w-[35%]  bg-black/70 shadow-2xl flex flex-col items-center justify-center gap-3"

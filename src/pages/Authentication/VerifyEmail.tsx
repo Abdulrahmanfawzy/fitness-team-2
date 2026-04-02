@@ -12,7 +12,7 @@ import { SendOTP } from "@/lib/Api/Authentication/Authentication";
 import { useOutletContext } from "react-router-dom";
 
 function VerifyEmail() {
-  const { email } = useParams()
+  const { email, navigateTo } = useParams()
   const [otp, setOtp] = useState("");
   const navigate = useNavigate()
   const [loding, setLoding] = useState(false);
@@ -29,7 +29,12 @@ function VerifyEmail() {
       const respons = await SendOTP(data);
       if (respons.status === true) {
         setLoding(false);
-        navigate(`/reset-password/${data.email}/${data.code}`)
+        if (navigateTo === "login") {
+          navigate("/login")
+        } else {
+          navigate(`/reset-password/${data.email}/${data.code}`)
+        }
+
       } else {
         setLoding(false);
         setalrtEror(respons.message);

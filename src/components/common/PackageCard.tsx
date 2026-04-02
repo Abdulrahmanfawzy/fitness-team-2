@@ -16,11 +16,10 @@ const PackageCard: React.FC<UiPackage> = ({
   const isRecommendedLocal = isRecommended;
   return (
     <div
-      className={`relative flex flex-col h-full p-6 sm:p-8 pt-12 sm:pt-14 rounded-2xl border transition-all duration-300 group hover:border-[#FF4D4D] ${
-        isRecommendedLocal
+      className={`relative flex flex-col h-full p-6 sm:p-8 pt-12 sm:pt-14 rounded-2xl border transition-all duration-300 group hover:border-[#FF4D4D] ${isRecommendedLocal
           ? "bg-[#2D0505] border-orange z-10 shadow-[0_0_30px_rgba(255,77,77,0.15)]"
           : "bg-[#1A1A1A] border-white/10"
-      }`}
+        }`}
     >
       {isRecommendedLocal && (
         <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#FF4D4D] text-white text-[13px] font-black py-2 px-6 rounded-b-lg uppercase tracking-widest z-20 flex items-center justify-center gap-2 whitespace-nowrap shadow-md">
@@ -61,17 +60,13 @@ const PackageCard: React.FC<UiPackage> = ({
           ))}
         </ul>
 
-        <button
-          onClick={() =>
-            navigate("/booking", {
-              state: { packageId: id, packageTitle: title },
-            })
-          }
-          className={`w-full py-2.5 rounded-md font-bold text-sm transition-all duration-300 transform cursor-pointer border ${
-            isRecommendedLocal
+        <button onClick={() =>
+          navigate(`/booking/${id}`)
+        }
+          className={`w-full py-2.5 rounded-md font-bold text-sm transition-all duration-300 transform cursor-pointer border ${isRecommendedLocal
               ? "bg-[#FF4D4D] text-white border-transparent hover:bg-[#ff3333] shadow-[0_0_20px_rgba(255,77,77,0.3)]"
               : "bg-transparent border-white/20 text-white hover:bg-white/5"
-          }`}
+            }`}
         >
           Book
         </button>
