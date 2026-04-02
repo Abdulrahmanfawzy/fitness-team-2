@@ -28,14 +28,12 @@ const ProfileHeader: React.FC = () => {
     ]);
 
     if (!user) return null;
-  const { data, isLoading } = useQuery({
-    queryKey: ["profile-header"],
-    queryFn: getProfileHeader,
-  });
+    const { data } = useQuery({
+        queryKey: ["profile-header"],
+        queryFn: getProfileHeader,
+    });
 
-  console.log(data)
-
-
+    console.log(data)
     return (
         <div className="w-full  text-white p-4 md:p-8">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
@@ -52,9 +50,11 @@ const ProfileHeader: React.FC = () => {
                         </p>
                     </div>
                 </div>
-                <button className="border border-[#FF4D4D] px-4 md:px-10 py-3 bg-[#121212] rounded-md text-sm hover:bg-red-500 transition">
+                {/* <button className="border border-[#FF4D4D] px-4 md:px-10 py-3 bg-[#121212] rounded-md text-sm hover:bg-red-500 transition">
                     Edit profile {data?.editProfile}
-                </button>
+                </button> */} 
+                 {/* انا شيلت الزرار ده ككومنت لانى معرفش ايه وظيفته وملوش ايند بوينت محدده */}
+
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
                 {cards.map((card, index) => {
