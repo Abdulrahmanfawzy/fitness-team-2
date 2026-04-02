@@ -32,6 +32,7 @@ const ProfileOverview: React.FC = () => {
     queryFn: getProfileOverview,
   });
 
+
  const [profileImage, setProfileImage] = useState<string | null>(null);
 const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -75,6 +76,7 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
               className="border border-[#FF4D4D] px-9 py-2.5 rounded-md text-xs font-bold hover:bg-[#FF4D4D] transition"
             >
               Remove
+
             </button>
           </div>
           <input
@@ -89,12 +91,12 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           </p>
         </div>
       </div>
-
       <div className="mb-6 border-b border-[#A7A7A7] pb-10">
         <h3 className="mb-2 font-semibold text-2xl">
           About Me
         </h3>
         <p className="text-[#A7A7A7] text-xl leading-6 w-full md:w-4/5">
+
           {about}
         </p>
       </div>
@@ -106,6 +108,7 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             className="flex flex-col border-l border-[#FF4D4D] rounded-lg px-4 py-15 text-center justify-center"
           >
             <div className="flex items-center justify-center mb-2">
+
               <card.icon size={20} className="mr-1" />
               <p className="text-[#FFFFFF] text-2xl">
                 {card.title}
@@ -117,7 +120,8 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           </div>
         ))}
       </div>
-    </div>
+    </div >
+
   );
 };
 

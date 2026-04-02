@@ -7,7 +7,7 @@ import Certifications from "@/components/Trainer/certifications/Certifications";
 import Others from "@/components/Trainer/others/Others";
 import Schedule from "@/components/Trainer/schedule/Schedule";
 import TrainerInfo from "@/components/Trainer/trainerInfo/TrainerInfo";
-import { useGetTrainer } from "@/lib/api/TrainerProfile/profile/get-trainerProfile";
+import { useGetTrainer } from "@/lib/Api/TrainerProfile/profile/get-trainerProfile";
 import type { Package, Trainer } from "@/lib/types/Trainer/TrainerTypes";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
